@@ -70,21 +70,26 @@ def fetch_newsapi(category, num_articles=3):
             'q': keywords.get(category, category),
             'sortBy': 'publishedAt',
             'language': 'en',
-            'pageSize': num_articles,
+            'pageSize': num_articles * 2,  # Fetch more to filter valid URLs
             'apiKey': NEWSAPI_KEY
         }
 
         response = requests.get(url, params=params, timeout=10)
         if response.status_code == 200:
             data = response.json()
-            for article in data.get('articles', [])[:num_articles]:
-                articles.append({
-                    'headline': article.get('title', 'Breaking News'),
-                    'summary': article.get('description', article.get('content', 'Read more at source'))[:200],
-                    'source': article.get('source', {}).get('name', 'News'),
-                    'url': article.get('url', '#'),
-                    'image': article.get('urlToImage', '')
-                })
+            for article in data.get('articles', []):
+                # Only include articles with valid URLs
+                article_url = article.get('url', '').strip()
+                if article_url and article_url.startswith('http'):
+                    articles.append({
+                        'headline': article.get('title', 'Breaking News'),
+                        'summary': (article.get('description') or article.get('content') or 'Read more at source')[:200],
+                        'source': article.get('source', {}).get('name', 'News'),
+                        'url': article_url,
+                        'image': article.get('urlToImage', '')
+                    })
+                    if len(articles) >= num_articles:
+                        break
     except Exception as e:
         print(f"NewsAPI error for '{category}': {e}")
 
@@ -98,14 +103,19 @@ def fetch_rss_feeds(category, num_articles=3):
     for feed_url in feeds:
         try:
             feed = feedparser.parse(feed_url)
-            for entry in feed.entries[:2]:
-                articles.append({
-                    'headline': html.unescape(entry.get('title', 'Breaking News')),
-                    'summary': html.unescape(entry.get('summary', 'Read more'))[:200],
-                    'source': feed.feed.get('title', 'News Feed'),
-                    'url': entry.get('link', '#'),
-                    'image': ''
-                })
+            for entry in feed.entries:
+                # Only include entries with valid URLs
+                entry_url = entry.get('link', '').strip()
+                if entry_url and entry_url.startswith('http'):
+                    articles.append({
+                        'headline': html.unescape(entry.get('title', 'Breaking News')),
+                        'summary': html.unescape(entry.get('summary', 'Read more'))[:200],
+                        'source': feed.feed.get('title', 'News Feed'),
+                        'url': entry_url,
+                        'image': ''
+                    })
+                if len(articles) >= num_articles:
+                    break
         except Exception as e:
             print(f"RSS feed error for {feed_url}: {e}")
 
