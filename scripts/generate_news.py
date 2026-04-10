@@ -39,38 +39,56 @@ def search_news(query, num_results=10):
     return results
 
 def fetch_today_news():
-    """Fetch world and RTP NC news for the day."""
-    world_queries = [
-        "world news today",
-        "US national news today",
-        "breaking international news",
-        "Middle East news today",
-        "Europe politics news",
-        "economic news today"
-    ]
+    """Fetch news for all categories: world, US, local, sports, science, finance, innovation."""
+    categories = {
+        'world': [
+            "world news today",
+            "international breaking news",
+            "Middle East politics news"
+        ],
+        'us': [
+            "US news today",
+            "American politics news",
+            "US economy inflation"
+        ],
+        'local': [
+            "Raleigh Durham news today",
+            "Chapel Hill news",
+            "Research Triangle Park news"
+        ],
+        'sports': [
+            "NBA Knicks news",
+            "Liverpool Premier League news",
+            "sports news today"
+        ],
+        'science': [
+            "science news today",
+            "climate change news",
+            "medical breakthrough news"
+        ],
+        'finance': [
+            "stock market news today",
+            "crypto bitcoin news",
+            "business finance news"
+        ],
+        'innovation': [
+            "AI technology news",
+            "green energy innovation",
+            "biotech CRISPR news"
+        ]
+    }
 
-    triangle_queries = [
-        "Raleigh Durham news today",
-        "Chapel Hill news today",
-        "Cary Apex news today",
-        "Research Triangle Park news",
-        "North Carolina local news",
-        "Triangle area breaking news"
-    ]
+    news_by_category = {}
+    for category, queries in categories.items():
+        print(f"🔍 Fetching {category} news...")
+        category_news = []
+        for query in queries:
+            category_news.extend(search_news(query, 2))
+        news_by_category[category] = category_news[:3]
 
-    print("🔍 Fetching world news...")
-    world_news = []
-    for query in world_queries[:3]:
-        world_news.extend(search_news(query, 3))
+    return news_by_category
 
-    print("🔍 Fetching RTP local news...")
-    local_news = []
-    for query in triangle_queries[:3]:
-        local_news.extend(search_news(query, 2))
-
-    return world_news[:10], local_news[:7]
-
-def generate_html(world_news, local_news):
+def generate_html(news_by_category):
     """Generate newspaper-style HTML."""
     today = datetime.now()
     date_str = today.strftime("%A, %B %d, %Y")
@@ -336,16 +354,17 @@ def main():
     print("📰 Generating The Triangle Tribune...")
 
     # Fetch news
-    world_news, local_news = fetch_today_news()
+    news_by_category = fetch_today_news()
 
     # Generate HTML
-    html = generate_html(world_news, local_news)
+    html = generate_html(news_by_category)
 
     # Save to index.html
     with open('index.html', 'w', encoding='utf-8') as f:
         f.write(html)
 
-    print(f"✅ Generated index.html with {len(world_news)} world stories and {len(local_news)} local stories")
+    total_stories = sum(len(stories) for stories in news_by_category.values())
+    print(f"✅ Generated index.html with {total_stories} total stories across 7 categories")
 
 if __name__ == '__main__':
     main()
