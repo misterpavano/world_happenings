@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Triangle Tribune — April 10, 2026</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #f4f0e6;
+      color: #1a1a1a;
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      background: #fdfaf3;
+      border-left: 1px solid #c8b89a;
+      border-right: 1px solid #c8b89a;
+      padding: 0 0 40px;
+    }
+
+    /* ── MASTHEAD ── */
+    .masthead {
+      text-align: center;
+      padding: 28px 20px 10px;
+      border-bottom: 4px double #1a1a1a;
+    }
+    .masthead-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      letter-spacing: .05em;
+      color: #555;
+      margin-bottom: 6px;
+    }
+    .paper-name {
+      font-family: 'UnifrakturMaguntia', cursive;
+      font-size: 72px;
+      line-height: 1;
+      letter-spacing: -1px;
+      color: #111;
+    }
+    .paper-tagline {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 13px;
+      color: #555;
+      margin-top: 4px;
+      letter-spacing: .06em;
+    }
+    .masthead-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 8px;
+      font-size: 11px;
+      letter-spacing: .05em;
+      color: #444;
+      border-top: 1px solid #aaa;
+      padding-top: 6px;
+    }
+
+    /* ── SECTION LABELS ── */
+    .section-label {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: #fff;
+      background: #1a1a1a;
+      display: inline-block;
+      padding: 3px 14px;
+      margin: 22px 20px 0;
+    }
+    .section-label.local {
+      background: #8b2020;
+    }
+
+    /* ── GRID ── */
+    .grid {
+      display: grid;
+      gap: 0;
+      padding: 0 20px;
+    }
+    .grid-world {
+      grid-template-columns: 2fr 1fr 1fr;
+      border-bottom: 2px solid #1a1a1a;
+      margin-top: 14px;
+    }
+    .grid-local {
+      grid-template-columns: 1fr 1fr;
+      margin-top: 14px;
+    }
+
+    /* ── ARTICLE ── */
+    article {
+      padding: 14px 16px;
+      border-right: 1px solid #c8b89a;
+    }
+    article:last-child { border-right: none; }
+
+    .kicker {
+      font-size: 10px;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: #8b2020;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    h2.headline {
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: 22px;
+      line-height: 1.2;
+      margin-bottom: 6px;
+    }
+    h2.headline.sm {
+      font-size: 17px;
+    }
+    h3.headline {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 15px;
+      line-height: 1.25;
+      margin-bottom: 5px;
+    }
+    .deck {
+      font-style: italic;
+      font-size: 13px;
+      color: #444;
+      margin-bottom: 8px;
+      line-height: 1.4;
+    }
+    .body-copy {
+      font-size: 14px;
+      line-height: 1.65;
+      color: #222;
+    }
+    .source-tag {
+      font-size: 10px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: #777;
+      margin-top: 8px;
+    }
+    .source-tag a {
+      color: #8b2020;
+      text-decoration: none;
+      border-bottom: 1px dotted #8b2020;
+    }
+    .source-tag a:hover { color: #5a0000; border-bottom-style: solid; }
+    .read-more {
+      display: inline-block;
+      margin-top: 8px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: #8b2020;
+      text-decoration: none;
+    }
+    .read-more:hover { text-decoration: underline; }
+
+    /* ── LEAD STORY special treatment ── */
+    .lead { }
+    .lead h2.headline { font-size: 34px; }
+
+    /* ── DIVIDERS between rows ── */
+    .row-divider {
+      border: none;
+      border-top: 1px solid #c8b89a;
+      margin: 0 20px;
+    }
+
+    /* ── BOTTOM TICKER ── */
+    .ticker {
+      background: #1a1a1a;
+      color: #f4f0e6;
+      font-size: 11px;
+      letter-spacing: .06em;
+      padding: 7px 20px;
+      margin-top: 28px;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .ticker span { margin-right: 60px; }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      font-size: 10px;
+      color: #888;
+      margin-top: 20px;
+      letter-spacing: .05em;
+    }
+
+    /* ── QUOTE PULLOUT ── */
+    .pullquote {
+      border-top: 3px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+      margin: 12px 0;
+      padding: 10px 0;
+      font-family: 'Playfair Display', serif;
+      font-size: 16px;
+      font-style: italic;
+      line-height: 1.4;
+      color: #111;
+    }
+
+    /* local grid row 2 */
+    .grid-local-3 {
+      grid-template-columns: 1fr 1fr 1fr;
+      margin-top: 0;
+      border-top: 1px solid #c8b89a;
+    }
+
+    @media (max-width: 700px) {
+      .grid-world, .grid-local, .grid-local-3 { grid-template-columns: 1fr; }
+      .paper-name { font-size: 44px; }
+      .masthead-top, .masthead-bottom { flex-direction: column; gap: 4px; }
+      article { border-right: none; border-bottom: 1px solid #c8b89a; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- MASTHEAD -->
+  <header class="masthead">
+    <div class="masthead-top">
+      <span>VOL. CXLII &nbsp;·&nbsp; NO. 100</span>
+      <span>ESTABLISHED 1884</span>
+      <span>PRICE: FREE &nbsp;·&nbsp; DIGITAL EDITION</span>
+    </div>
+    <div class="paper-name">The Triangle Tribune</div>
+    <div class="paper-tagline">All the News Fit to Read — World, Nation &amp; the Research Triangle</div>
+    <div class="masthead-bottom">
+      <span>FRIDAY, APRIL 10, 2026</span>
+      <span>⬤ MORNING EDITION</span>
+      <span>RALEIGH · DURHAM · CHAPEL HILL</span>
+    </div>
+  </header>
+
+  <!-- WORLD & NATIONAL -->
+  <div class="section-label">World &amp; National News</div>
+
+  <div class="grid grid-world">
+
+    <!-- LEAD: Iran-US Talks -->
+    <article class="lead">
+      <div class="kicker">Breaking · Middle East</div>
+      <h2 class="headline">U.S. and Iran Hold Make-or-Break Ceasefire Talks This Weekend</h2>
+      <p class="deck">High-stakes negotiations in Pakistan could determine the fate of millions and reshape global oil markets.</p>
+      <p class="body-copy">Crucial negotiations between Washington and Tehran are set to unfold this weekend in Islamabad, with senior diplomats from both sides convening under Pakistani mediation. The talks represent the first direct, high-level engagement since the conflict escalated earlier this year and carry sweeping implications for regional stability, the global oil supply, and the prospect of a broader Middle Eastern crisis.</p>
+      <p class="body-copy">Officials familiar with the process cautioned that the discussions are "fragile," with no guarantee of a breakthrough. The White House signaled optimism but declined to preview specific terms, while Iranian state media described the talks as "preliminary consultations."</p>
+      <div class="pullquote">"The outcome of this weekend's talks will reverberate well beyond the region — and likely into every gas pump in America."</div>
+      <a class="read-more" href="https://www.cnn.com/2026/04/10/us/5-things-to-know-for-april-10-iran-impacts-melania-trump-pentagon-ruling-easter-message-backlash-hawaii-flood-threat" target="_blank" rel="noopener">Read Full Story →</a>
+      <p class="source-tag">Source: <a href="https://www.cnn.com/" target="_blank" rel="noopener">CNN</a></p>
+    </article>
+
+    <!-- COL 2 -->
+    <article>
+      <div class="kicker">Economy</div>
+      <h2 class="headline sm">Gas Prices Surge 21% in March — Largest Jump Since 1967</h2>
+      <p class="body-copy">The U.S. Consumer Price Index report for March revealed that gasoline prices leaped 21.2% in a single month, driven by Iranian conflict disruptions to Gulf oil shipments. The spike marks the steepest single-month fuel increase in nearly six decades and is already straining household budgets heading into the spring driving season. Economists warn that if the Iran ceasefire talks fail, further price hikes are inevitable.</p>
+      <a class="read-more" href="https://www.cnn.com/2026/04/10/business/live-news/us-cpi-march-inflation-iran" target="_blank" rel="noopener">Read Full Story →</a>
+      <p class="source-tag">Source: <a href="https://www.cnn.com/business" target="_blank" rel="noopener">CNN Business</a></p>
+
+      <hr style="border:none;border-top:1px solid #c8b89a;margin:14px 0;">
+
+      <div class="kicker">Press Freedom</div>
+      <h3 class="headline">Judge Blocks Pentagon Press Restrictions</h3>
+      <p class="body-copy">A federal judge issued a ruling blocking the Pentagon's attempt to curtail journalists' access to military briefings and facilities, writing that "suppression of political speech is the mark of an autocracy, not a democracy." The Defense Department announced it would appeal, setting up a significant First Amendment battle in the courts.</p>
+      <a class="read-more" href="https://www.cnn.com/2026/04/10/us/5-things-to-know-for-april-10-iran-impacts-melania-trump-pentagon-ruling-easter-message-backlash-hawaii-flood-threat" target="_blank" rel="noopener">Read Full Story →</a>
+      <p class="source-tag">Source: <a href="https://www.cnn.com/" target="_blank" rel="noopener">CNN</a></p>
+    </article>
+
+    <!-- COL 3 -->
+    <article>
+      <div class="kicker">Israel · Lebanon</div>
+      <h3 class="headline">Netanyahu Vows to Press On Despite Lebanon Talks</h3>
+      <p class="body-copy">Israeli Prime Minister Benjamin Netanyahu stated that military operations against Hezbollah will continue even as diplomatic channels reopen with Beirut. The WHO warned it is operationally impossible to evacuate two hospitals in Beirut that face Israeli evacuation orders, with roughly 450 patients unable to be safely moved.</p>
+      <a class="read-more" href="https://www.cnn.com/2026/04/09/world/live-news/iran-war-trump-us-ceasefire" target="_blank" rel="noopener">Read Full Story →</a>
+      <p class="source-tag">Source: <a href="https://www.cnn.com/" target="_blank" rel="noopener">CNN</a></p>
+
+      <hr style="border:none;border-top:1px solid #c8b89a;margin:14px 0;">
+
+      <div class="kicker">Africa</div>
+      <h3 class="headline">Nigerian General Killed in Jihadist Raid on Army Base</h3>
+      <p class="body-copy">Brigadier General Oseni Omoh Braimah and several soldiers were killed when suspected jihadist militants stormed an army installation in Nigeria's restive northeast. The attack underscores the persistent security challenge facing Abuja's forces in the Lake Chad basin region.</p>
+      <a class="read-more" href="https://www.justsecurity.org/135956/early-edition-april-10-2026/" target="_blank" rel="noopener">Read Full Story →</a>
+      <p class="source-tag">Source: <a href="https://www.justsecurity.org/" target="_blank" rel="noopener">Just Security</a></p>
+    </article>
+
+  </div><!-- /grid-world -->
+
+  <hr class="row-divider">
+
+  <!-- Second world row -->
+  <div class="grid" style="grid-template-columns:1fr 1fr 1fr; padding: 0 20px; border-bottom: 2px solid #1a1a1a;">
+
+    <article>
+      <div class="kicker">Europe · Politics</div>
+      <h3 class="headline">Hungary Votes Sunday — Orbán's 16-Year Reign at Stake</h3>
+      <p class="body-copy">Hungarian citizens head to the polls on Sunday in an election that could end Viktor Orbán's grip on power. Opposition parties have unified under a single coalition, and polling shows a historically tight race. The result carries major implications for the European Union's democratic cohesion.</p>
+      <a class="read-more" href="https://www.justsecurity.org/135956/early-edition-april-10-2026/" target="_blank" rel="noopener">Read Full Story →</a>
+      <p class="source-tag">Source: <a href="https://www.justsecurity.org/" target="_blank" rel="noopener">Just Security</a></p>
+    </article>
+
+    <article>
+      <div class="kicker">Americas</div>
+      <h3 class="headline">Cuban President Díaz-Canel: "I Will Not Step Down"</h3>
+      <p class="body-copy">In his first interview with a U.S. television network, Cuban President Miguel Díaz-Canel told NBC's <em>Meet the Press</em> he has no intention of resigning despite sustained American pressure. The rare media appearance signals Havana's intent to project stability amid deepening economic hardship on the island.</p>
+      <a class="read-more" href="https://www.justsecurity.org/135956/early-edition-april-10-2026/" target="_blank" rel="noopener">Read Full Story →</a>
+      <p class="source-tag">Source: <a href="https://www.justsecurity.org/" target="_blank" rel="noopener">Just Security</a></p>
+    </article>
+
+    <article>
+      <div class="kicker">Weather</div>
+      <h3 class="headline">Major Flood Threat Grips Hawaii as Storm Reaches Peak</h3>
+      <p class="body-copy">A powerful multi-day storm hammering the Hawaiian Islands is reaching maximum intensity, issuing flash-flood watches statewide. Hawaii is still recovering from catastrophic flooding in March, compounding infrastructure strain and emergency response capacity heading into the weekend.</p>
+      <a class="read-more" href="https://www.cnn.com/2026/04/10/us/5-things-to-know-for-april-10-iran-impacts-melania-trump-pentagon-ruling-easter-message-backlash-hawaii-flood-threat" target="_blank" rel="noopener">Read Full Story →</a>
+      <p class="source-tag">Source: <a href="https://www.cnn.com/" target="_blank" rel="noopener">CNN</a></p>
+    </article>
+
+  </div>
+
+  <!-- LOCAL -->
+  <div class="section-label local">RTP &amp; Triangle Local News</div>
+
+  <div class="grid grid-local">
+
+    <article>
+      <div class="kicker">Education · Chapel Hill</div>
+      <h2 class="headline sm">Chapel Hill-Carrboro Schools Vote to Eliminate 22 Staff Positions</h2>
+      <p class="deck">Declining enrollment and charter-school competition force painful budget cuts.</p>
+      <p class="body-copy">The Chapel Hill-Carrboro City Schools board voted to cut 22 staff positions in a bid to save between $1.5 and $2 million annually. Administrators cited a combination of falling birth rates, growing charter school enrollment, and families leaving the district as key drivers of the enrollment decline that made the reductions necessary. Affected employees were notified ahead of the public vote.</p>
+      <a class="read-more" href="https://www.wral.com/news/education/carrboro-chapel-hill-schools-staff-cuts-april-2026/" target="_blank" rel="noopener">Read Full Story →</a>
+      <p class="source-tag">Source: <a href="https://www.wral.com/" target="_blank" rel="noopener">WRAL News</a></p>
+    </article>
+
+    <article>
+      <div class="kicker">Crime · Durham / Orange County</div>
+      <h2 class="headline sm">Stolen Vehicle Linked to Dozen Break-Ins Across Triangle Counties</h2>
+      <p class="deck">A burned-out car found after a 2 a.m. incident ties together a crime spree spanning Orange and Durham counties.</p>
+      <p class="body-copy">Investigators have connected a recovered, burned stolen vehicle to at least twelve break-ins targeting a hotel on 540 South Elliott Road in Chapel Hill, as well as additional incidents scattered across Orange and Durham Counties. Authorities have not yet made arrests but say surveillance footage is aiding the probe. Residents are advised to report suspicious activity immediately.</p>
+      <a class="read-more" href="https://www.wral.com/news/local/durham-stolen-car-crash-fire-april-2026/" target="_blank" rel="noopener">Read Full Story →</a>
+      <p class="source-tag">Source: <a href="https://www.wral.com/" target="_blank" rel="noopener">WRAL News</a></p>
+    </article>
+
+  </div>
+
+  <div class="grid grid-local-3">
+
+    <article>
+      <div class="kicker">Transit · Apex / Cary</div>
+      <h3 class="headline">GoApex Transit Expands April 18 — New Sunday Service Added</h3>
+      <p class="body-copy">Starting April 18, the GoApex Door-to-Door service will merge into the GoCary Tier-1 service area. GoApex Route 1 will nearly double its weekly trips with 30-minute frequency from 6 a.m. to 7 p.m. and hourly service through 10 p.m. A new Sunday route also launches, marking a significant expansion of regional public transit options.</p>
+      <a class="read-more" href="https://www.apexnc.org/m/newsflash" target="_blank" rel="noopener">Read Full Story →</a>
+      <p class="source-tag">Source: <a href="https://www.apexnc.org/" target="_blank" rel="noopener">Town of Apex</a></p>
+    </article>
+
+    <article>
+      <div class="kicker">Development · RTP</div>
+      <h3 class="headline">RTP 3.0 Strategy Charts Next 50 Years for Research Triangle Park</h3>
+      <p class="body-copy">Research Triangle Park is advancing its ambitious RTP 3.0 master plan, a 50-year mixed-use vision for the park's 7,000 acres. Wake County and participating municipalities have approved updated zoning to support sustainable commercial, residential, and innovation corridors — positioning RTP to compete with top global technology hubs through the 2070s.</p>
+      <a class="read-more" href="https://www.rtp.org/2026/01/wake-county-economic-development-economy-business-feature-rtp-3-0-and-the-future-of-research-triangle-park/" target="_blank" rel="noopener">Read Full Story →</a>
+      <p class="source-tag">Source: <a href="https://www.rtp.org/" target="_blank" rel="noopener">RTP.org</a></p>
+    </article>
+
+    <article>
+      <div class="kicker">Sports · Chapel Hill</div>
+      <h3 class="headline">New Tar Heels Coach Malone: "UNC Was the Only Job I'd Take"</h3>
+      <p class="body-copy">Newly appointed UNC men's basketball coach Michael Malone made clear that the Tar Heel program was uniquely attractive to him, saying he believes he is joining "something special" in Chapel Hill. Malone inherits a program eager to return to elite status and is expected to address the team's roster in the coming weeks.</p>
+      <a class="read-more" href="https://indyweek.com/" target="_blank" rel="noopener">Read Full Story →</a>
+      <p class="source-tag">Source: <a href="https://indyweek.com/" target="_blank" rel="noopener">INDY Week</a></p>
+    </article>
+
+  </div>
+
+  <!-- TICKER -->
+  <div class="ticker">
+    <span>⬤ WATER NOTICE: Cary/Apex water system completes transition back from chloramine to standard chlorine treatment — water remains fully safe to drink ·</span>
+    <span>⬤ UNC CAMPUS: Daily Tar Heel apologizes for April Fools' satire piece that sparked widespread student panic over ICE agents ·</span>
+    <span>⬤ MARKETS: Crude oil futures elevated on Iran conflict uncertainty — Brent trading above $110/bbl ·</span>
+    <span>⬤ WHITE HOUSE: First Lady Melania Trump denies any association with Jeffrey Epstein, calls allegations "baseless lies" ·</span>
+    <span>⬤ USDA: Agriculture Sec.'s Easter message triggers formal employee complaint from nearly 100,000 department staff ·</span>
+  </div>
+
+  <footer style="margin-top:18px; padding: 0 20px;">
+    The Triangle Tribune &nbsp;·&nbsp; Digital Morning Edition &nbsp;·&nbsp; Friday, April 10, 2026<br>
+    Serving Raleigh, Durham, Chapel Hill, Cary &amp; the Research Triangle since 1884 &nbsp;·&nbsp; All stories compiled from verified news sources.
+  </footer>
+
+</div>
+</body>
+</html>
