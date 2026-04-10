@@ -1,99 +1,152 @@
 #!/usr/bin/env python3
 """
 Generate The Triangle Tribune daily newspaper.
-Fetches world and RTP NC news, generates HTML, saves as index.html.
+Fetches real news from NewsAPI + RSS feeds, generates HTML, saves as index.html.
 """
 
 import requests
+import feedparser
 from datetime import datetime
-import re
-import json
+import html
+import os
 
-def search_news(query, num_results=10):
-    """Fetch news from web search (using DuckDuckGo as fallback)."""
-    # Using a simple search approach via requests
-    # In production, you'd use a news API like NewsAPI or Google News
-    headers = {
-        'User-Agent': 'Mozilla/5.0 (compatible; TriangleTribune/1.0)'
+# NewsAPI Key
+NEWSAPI_KEY = "36736110f11441729fbcd023357bef1b"
+
+# RSS Feed URLs for each category (topic-based)
+RSS_FEEDS = {
+    'world': [
+        'https://feeds.bbc.co.uk/news/world/rss.xml',
+        'https://feeds.reuters.com/reuters/worldNews',
+        'http://feeds.aljazeera.com/AJEnglish/rss.xml'
+    ],
+    'us': [
+        'https://feeds.bbc.co.uk/news/us_and_canada/rss.xml',
+        'https://feeds.reuters.com/reuters/domesticNews',
+        'https://feeds.washingtonpost.com/rss/national'
+    ],
+    'local': [
+        'https://www.wral.com/feed/',
+        'https://www.indyweek.com/feed/rss'
+    ],
+    'sports': [
+        'https://feeds.bloomberg.com/markets/news.rss',
+        'https://www.espn.com/espn/rss/news',
+        'https://feeds.sky.com/feeds/skysports/rss.xml'
+    ],
+    'science': [
+        'https://feeds.nasa.gov/pu.rss',
+        'https://feeds.nature.com/nature/rss/current',
+        'https://www.sciencedaily.com/rss/all.xml'
+    ],
+    'finance': [
+        'https://feeds.bloomberg.com/markets/news.rss',
+        'https://feeds.cnbc.com/nbcnews/public/business/',
+        'https://feeds.reuters.com/reuters/businessNews'
+    ],
+    'innovation': [
+        'https://feeds.arstechnica.com/arstechnica/index',
+        'https://www.techcrunch.com/feed/',
+        'https://feeds.theverge.com/vergefeeds/rss/index.xml'
+    ]
+}
+
+def fetch_newsapi(category, num_articles=3):
+    """Fetch news from NewsAPI based on category keywords."""
+    keywords = {
+        'world': 'international OR global',
+        'us': 'US OR United States',
+        'local': 'Raleigh OR Durham OR "Research Triangle" OR "Chapel Hill"',
+        'sports': 'sports OR NBA OR Premier League OR football',
+        'science': 'science OR space OR climate',
+        'finance': 'business OR finance OR stock market',
+        'innovation': 'technology OR AI OR innovation'
     }
 
-    results = []
+    articles = []
     try:
-        # Try a basic web search simulation
-        # For real implementation, integrate with NewsAPI.org or similar
-        search_url = f"https://www.bing.com/news/search?q={query.replace(' ', '+')}"
-        response = requests.get(search_url, headers=headers, timeout=5)
+        url = 'https://newsapi.org/v2/everything'
+        params = {
+            'q': keywords.get(category, category),
+            'sortBy': 'publishedAt',
+            'language': 'en',
+            'pageSize': num_articles,
+            'apiKey': NEWSAPI_KEY
+        }
 
+        response = requests.get(url, params=params, timeout=10)
         if response.status_code == 200:
-            # Parse basic news results
-            # This is a simplified version - real implementation would parse HTML or use API
-            results = [{
-                'headline': f'News about {query}',
-                'summary': f'Latest updates on {query}',
-                'source': 'Web Search',
-                'url': search_url
-            }]
+            data = response.json()
+            for article in data.get('articles', [])[:num_articles]:
+                articles.append({
+                    'headline': article.get('title', 'Breaking News'),
+                    'summary': article.get('description', article.get('content', 'Read more at source'))[:200],
+                    'source': article.get('source', {}).get('name', 'News'),
+                    'url': article.get('url', '#'),
+                    'image': article.get('urlToImage', '')
+                })
     except Exception as e:
-        print(f"Search error for '{query}': {e}")
+        print(f"NewsAPI error for '{category}': {e}")
 
-    return results
+    return articles
+
+def fetch_rss_feeds(category, num_articles=3):
+    """Fetch news from RSS feeds for the category."""
+    articles = []
+    feeds = RSS_FEEDS.get(category, [])
+
+    for feed_url in feeds:
+        try:
+            feed = feedparser.parse(feed_url)
+            for entry in feed.entries[:2]:
+                articles.append({
+                    'headline': html.unescape(entry.get('title', 'Breaking News')),
+                    'summary': html.unescape(entry.get('summary', 'Read more'))[:200],
+                    'source': feed.feed.get('title', 'News Feed'),
+                    'url': entry.get('link', '#'),
+                    'image': ''
+                })
+        except Exception as e:
+            print(f"RSS feed error for {feed_url}: {e}")
+
+    return articles[:num_articles]
 
 def fetch_today_news():
-    """Fetch news for all categories: world, US, local, sports, science, finance, innovation."""
-    categories = {
-        'world': [
-            "world news today",
-            "international breaking news",
-            "Middle East politics news"
-        ],
-        'us': [
-            "US news today",
-            "American politics news",
-            "US economy inflation"
-        ],
-        'local': [
-            "Raleigh Durham news today",
-            "Chapel Hill news",
-            "Research Triangle Park news"
-        ],
-        'sports': [
-            "NBA Knicks news",
-            "Liverpool Premier League news",
-            "sports news today"
-        ],
-        'science': [
-            "science news today",
-            "climate change news",
-            "medical breakthrough news"
-        ],
-        'finance': [
-            "stock market news today",
-            "crypto bitcoin news",
-            "business finance news"
-        ],
-        'innovation': [
-            "AI technology news",
-            "green energy innovation",
-            "biotech CRISPR news"
-        ]
-    }
-
+    """Fetch news for all categories using NewsAPI + RSS feeds."""
+    categories = ['world', 'us', 'local', 'sports', 'science', 'finance', 'innovation']
     news_by_category = {}
-    for category, queries in categories.items():
+
+    for category in categories:
         print(f"🔍 Fetching {category} news...")
-        category_news = []
-        for query in queries:
-            category_news.extend(search_news(query, 2))
-        news_by_category[category] = category_news[:3]
+
+        # Try NewsAPI first
+        newsapi_articles = fetch_newsapi(category, num_articles=4)
+
+        # Supplement with RSS feeds
+        rss_articles = fetch_rss_feeds(category, num_articles=3)
+
+        # Combine and deduplicate
+        all_articles = newsapi_articles + rss_articles
+        seen_urls = set()
+        unique_articles = []
+
+        for article in all_articles:
+            if article['url'] not in seen_urls and len(unique_articles) < 9:
+                unique_articles.append(article)
+                seen_urls.add(article['url'])
+
+        news_by_category[category] = unique_articles
+        print(f"  ✓ Got {len(unique_articles)} {category} articles")
 
     return news_by_category
 
 def generate_html(news_by_category):
-    """Generate newspaper-style HTML."""
+    """Generate newspaper-style HTML from news data."""
     today = datetime.now()
     date_str = today.strftime("%A, %B %d, %Y")
 
-    html = f"""<!DOCTYPE html>
+    # Start HTML document
+    html_content = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -108,127 +161,179 @@ def generate_html(news_by_category):
       background: #f4f0e6;
       color: #1a1a1a;
       font-family: 'Source Serif 4', Georgia, serif;
-      font-size: 15px;
+      font-size: 14px;
       line-height: 1.6;
     }}
 
+    nav.floating-nav {{
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: #1a1a1a;
+      border-bottom: 2px solid #8b2020;
+      padding: 0;
+      z-index: 1000;
+      display: flex;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }}
+
+    nav.floating-nav::-webkit-scrollbar {{
+      height: 3px;
+    }}
+
+    nav.floating-nav::-webkit-scrollbar-thumb {{
+      background: #8b2020;
+    }}
+
+    nav.floating-nav a {{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      padding: 10px 16px;
+      color: #f4f0e6;
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      border-bottom: 3px solid transparent;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+      min-height: 44px;
+      cursor: pointer;
+    }}
+
+    nav.floating-nav a:hover {{
+      background: #8b2020;
+    }}
+
+    nav.floating-nav a.active {{
+      background: #8b2020;
+      border-bottom-color: #ffd700;
+      color: #ffd700;
+    }}
+
+    .page-wrapper {{
+      margin-top: 50px;
+      padding: 0 12px 40px;
+    }}
+
     .page {{
-      max-width: 1100px;
+      max-width: 900px;
       margin: 0 auto;
       background: #fdfaf3;
-      border-left: 1px solid #c8b89a;
-      border-right: 1px solid #c8b89a;
-      padding: 0 0 40px;
+      border-radius: 4px;
     }}
 
     .masthead {{
       text-align: center;
-      padding: 28px 20px 10px;
-      border-bottom: 4px double #1a1a1a;
+      padding: 18px 12px 8px;
+      border-bottom: 2px solid #1a1a1a;
+      background: #fdfaf3;
+      border-radius: 4px 4px 0 0;
     }}
 
     .masthead-top {{
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 11px;
+      font-size: 9px;
       letter-spacing: .05em;
-      color: #555;
-      margin-bottom: 6px;
+      color: #666;
+      margin-bottom: 4px;
     }}
 
     .paper-name {{
       font-family: 'UnifrakturMaguntia', cursive;
-      font-size: 72px;
+      font-size: 48px;
       line-height: 1;
       letter-spacing: -1px;
       color: #111;
+      margin: 4px 0;
     }}
 
     .paper-tagline {{
       font-family: 'Playfair Display', serif;
       font-style: italic;
-      font-size: 13px;
-      color: #555;
-      margin-top: 4px;
-      letter-spacing: .06em;
+      font-size: 11px;
+      color: #666;
+      margin: 3px 0;
+      letter-spacing: .03em;
     }}
 
     .masthead-bottom {{
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 8px;
-      font-size: 11px;
-      letter-spacing: .05em;
-      color: #444;
-      border-top: 1px solid #aaa;
-      padding-top: 6px;
+      font-size: 9px;
+      letter-spacing: .04em;
+      color: #666;
+      border-top: 1px solid #c8b89a;
+      padding-top: 4px;
+      margin-top: 4px;
     }}
 
     .section-label {{
       font-family: 'Playfair Display', serif;
       font-weight: 700;
-      font-size: 11px;
-      letter-spacing: .2em;
+      font-size: 10px;
+      letter-spacing: .15em;
       text-transform: uppercase;
       color: #fff;
       background: #1a1a1a;
       display: inline-block;
-      padding: 3px 14px;
-      margin: 22px 20px 0;
+      padding: 4px 10px;
+      margin: 14px 0 8px;
     }}
 
-    .section-label.local {{
+    .section-label.highlight {{
       background: #8b2020;
     }}
 
     .grid {{
       display: grid;
       gap: 0;
-      padding: 0 20px;
-      grid-template-columns: 1fr 1fr;
-      margin-top: 14px;
+      grid-template-columns: 1fr;
+      margin: 10px 0;
+      border: 1px solid #c8b89a;
     }}
 
     article {{
-      padding: 14px 16px;
-      border-right: 1px solid #c8b89a;
+      padding: 12px;
       border-bottom: 1px solid #c8b89a;
     }}
 
-    article:last-child {{ border-right: none; }}
+    article:last-child {{
+      border-bottom: none;
+    }}
 
     .kicker {{
-      font-size: 10px;
-      letter-spacing: .15em;
+      font-size: 9px;
+      letter-spacing: .1em;
       text-transform: uppercase;
       color: #8b2020;
       font-weight: 600;
-      margin-bottom: 4px;
+      margin-bottom: 3px;
     }}
 
     h3.headline {{
       font-family: 'Playfair Display', serif;
       font-weight: 700;
-      font-size: 18px;
+      font-size: 14px;
       line-height: 1.25;
-      margin-bottom: 8px;
+      margin-bottom: 5px;
     }}
 
     .body-copy {{
-      font-size: 14px;
-      line-height: 1.6;
+      font-size: 13px;
+      line-height: 1.5;
       color: #222;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }}
 
     .source-tag {{
-      font-size: 10px;
-      letter-spacing: .08em;
+      font-size: 9px;
+      letter-spacing: .06em;
       text-transform: uppercase;
       color: #777;
-      margin-top: 8px;
+      margin-top: 5px;
     }}
 
     .source-tag a {{
@@ -237,123 +342,225 @@ def generate_html(news_by_category):
       border-bottom: 1px dotted #8b2020;
     }}
 
-    .source-tag a:hover {{ text-decoration: underline; }}
+    .source-tag a:hover {{
+      text-decoration: underline;
+    }}
 
     .read-more {{
       display: inline-block;
-      margin-top: 8px;
-      font-size: 11px;
+      margin-top: 6px;
+      font-size: 9px;
       font-weight: 600;
-      letter-spacing: .06em;
+      letter-spacing: .05em;
       text-transform: uppercase;
       color: #8b2020;
       text-decoration: none;
     }}
 
-    .read-more:hover {{ text-decoration: underline; }}
+    .read-more:hover {{
+      text-decoration: underline;
+    }}
+
+    section.news-section {{
+      display: none;
+    }}
+
+    section.news-section.active {{
+      display: block;
+    }}
 
     .ticker {{
       background: #1a1a1a;
       color: #f4f0e6;
-      font-size: 11px;
-      letter-spacing: .06em;
-      padding: 7px 20px;
-      margin-top: 28px;
+      font-size: 10px;
+      letter-spacing: .04em;
+      padding: 8px 12px;
+      margin: 12px 0;
       overflow: hidden;
+      border-radius: 4px;
+      line-height: 1.4;
+    }}
+
+    .ticker span {{
+      display: block;
+      margin-bottom: 4px;
     }}
 
     footer {{
       text-align: center;
-      font-size: 10px;
+      font-size: 9px;
       color: #888;
-      margin-top: 20px;
-      letter-spacing: .05em;
-      padding: 0 20px;
+      padding: 12px;
+      border-top: 1px solid #c8b89a;
+      margin-top: 12px;
+      line-height: 1.4;
     }}
 
-    @media (max-width: 700px) {{
-      .grid {{ grid-template-columns: 1fr; }}
-      .paper-name {{ font-size: 44px; }}
-      article {{ border-right: none; }}
+    @media (min-width: 768px) {{
+      nav.floating-nav {{
+        position: fixed;
+        left: 0;
+        top: 50%;
+        right: auto;
+        transform: translateY(-50%);
+        flex-direction: column;
+        width: 140px;
+        border-right: 2px solid #8b2020;
+        border-bottom: none;
+        border-radius: 0 8px 8px 0;
+        overflow: visible;
+      }}
+
+      nav.floating-nav a {{
+        flex-direction: column;
+        border-left: 3px solid transparent;
+        border-bottom: none;
+        min-height: 50px;
+        padding: 12px 10px;
+      }}
+
+      nav.floating-nav a.active {{
+        border-left-color: #ffd700;
+        border-bottom: none;
+      }}
+
+      .page-wrapper {{
+        margin-top: 0;
+        margin-left: 140px;
+        padding: 0 16px 40px;
+      }}
+
+      .paper-name {{
+        font-size: 64px;
+      }}
+
+      .grid {{
+        grid-template-columns: 1fr 1fr 1fr;
+      }}
+
+      article {{
+        padding: 14px;
+      }}
     }}
   </style>
 </head>
 <body>
+
+<nav class="floating-nav">
+  <a class="nav-link active" data-section="world">World</a>
+  <a class="nav-link" data-section="us">U.S.</a>
+  <a class="nav-link" data-section="local">Local</a>
+  <a class="nav-link" data-section="sports">Sports</a>
+  <a class="nav-link" data-section="science">Science</a>
+  <a class="nav-link" data-section="finance">Finance</a>
+  <a class="nav-link" data-section="innovation">Innovation</a>
+</nav>
+
+<div class="page-wrapper">
 <div class="page">
 
   <header class="masthead">
-    <div class="masthead-top">
-      <span>MORNING EDITION</span>
-      <span>ESTABLISHED 1884</span>
-      <span>AUTO-GENERATED DAILY</span>
-    </div>
+    <div class="masthead-top">VOL. CXLII · NO. 100 · ESTABLISHED 1884</div>
     <div class="paper-name">The Triangle Tribune</div>
-    <div class="paper-tagline">All the News Fit to Read — World, Nation & the Research Triangle</div>
+    <div class="paper-tagline">All the News Fit to Read</div>
     <div class="masthead-bottom">
-      <span>{date_str}</span>
-      <span>⬥ DAILY EDITION</span>
-      <span>RALEIGH · DURHAM · CHAPEL HILL</span>
+      {date_str} · ⬥ MORNING EDITION · RALEIGH · DURHAM · CHAPEL HILL
     </div>
   </header>
-
-  <div class="section-label">World & National News</div>
-  <div class="grid">
 """
 
-    # Add world news
-    for i, story in enumerate(world_news):
-        url = story.get('url', '#')
-        html += f"""    <article>
-      <div class="kicker">Global News</div>
-      <h3 class="headline">{story.get('headline', 'News Update')}</h3>
-      <p class="body-copy">{story.get('summary', 'Latest news and updates.')}</p>
-      <a class="read-more" href="{url}" target="_blank" rel="noopener">Read Full Story →</a>
-      <p class="source-tag">Source: <a href="{url}" target="_blank" rel="noopener">{story.get('source', 'News')}</a></p>
-    </article>
+    # Generate sections for each category
+    categories = ['world', 'us', 'local', 'sports', 'science', 'finance', 'innovation']
+    section_labels = {
+        'world': 'World News',
+        'us': 'U.S. News',
+        'local': 'RTP & Triangle Local',
+        'sports': 'Sports',
+        'science': 'Science',
+        'finance': 'Finance',
+        'innovation': 'Innovation'
+    }
+
+    for idx, category in enumerate(categories):
+        active_class = ' active' if idx == 0 else ''
+        label_class = 'highlight' if category != 'world' else ''
+
+        html_content += f"""
+  <section id="{category}" class="news-section{active_class}">
+    <div class="section-label {label_class}">{section_labels[category]}</div>
+    <div class="grid">
 """
 
-    html += """  </div>
+        articles = news_by_category.get(category, [])
+        for article in articles:
+            # Escape HTML in article content
+            headline = html.escape(article.get('headline', 'Breaking News')[:80])
+            summary = html.escape(article.get('summary', 'Read more'))
+            source = html.escape(article.get('source', 'News'))
+            url = html.escape(article.get('url', '#'))
 
-  <div class="section-label local">RTP & Triangle Local News</div>
-  <div class="grid">
+            html_content += f"""      <article>
+        <div class="kicker">{category.upper()}</div>
+        <h3 class="headline">{headline}</h3>
+        <p class="body-copy">{summary}</p>
+        <a class="read-more" href="{url}" target="_blank" rel="noopener">Read Full Story →</a>
+        <p class="source-tag">Source: <a href="{url}" target="_blank" rel="noopener">{source}</a></p>
+      </article>
 """
 
-    # Add local news
-    for story in local_news:
-        url = story.get('url', '#')
-        html += f"""    <article>
-      <div class="kicker">Triangle Area</div>
-      <h3 class="headline">{story.get('headline', 'Local News')}</h3>
-      <p class="body-copy">{story.get('summary', 'Latest local updates.')}</p>
-      <a class="read-more" href="{url}" target="_blank" rel="noopener">Read Full Story →</a>
-      <p class="source-tag">Source: <a href="{url}" target="_blank" rel="noopener">{story.get('source', 'Local News')}</a></p>
-    </article>
+        html_content += """    </div>
+  </section>
 """
 
-    html += f"""  </div>
-
+    # Add ticker and footer
+    html_content += f"""
   <div class="ticker">
-    ⬤ The Triangle Tribune is auto-generated daily at 7 AM EST via GitHub Actions ·
-    ⬤ All stories linked to original sources ·
-    ⬤ Coverage: World News, U.S. News, RTP Triangle Area
+    <span>⬥ Real news updated daily from NewsAPI & RSS feeds</span>
+    <span>⬥ All stories link to original sources</span>
+    <span>⬥ Auto-published daily at 7 AM EST via GitHub Actions</span>
+    <span>⬥ The Triangle Tribune: All the news fit to read</span>
   </div>
 
   <footer>
-    The Triangle Tribune · Daily Morning Edition · {date_str}<br>
+    The Triangle Tribune · Digital Morning Edition · {date_str}<br>
     Serving Raleigh, Durham, Chapel Hill, Cary & the Research Triangle · Auto-published via GitHub Actions
   </footer>
 
 </div>
+</div>
+
+<script>
+  const navLinks = document.querySelectorAll('.nav-link');
+  const sections = document.querySelectorAll('.news-section');
+
+  navLinks.forEach(link => {{
+    link.addEventListener('click', (e) => {{
+      e.preventDefault();
+      const targetSection = link.getAttribute('data-section');
+
+      sections.forEach(section => section.classList.remove('active'));
+      navLinks.forEach(l => l.classList.remove('active'));
+
+      document.getElementById(targetSection).classList.add('active');
+      link.classList.add('active');
+
+      if (window.innerWidth < 768) {{
+        window.scrollTo({{ top: 0, behavior: 'smooth' }});
+      }}
+    }});
+  }});
+</script>
+
 </body>
 </html>
 """
 
-    return html
+    return html_content
 
 def main():
-    print("📰 Generating The Triangle Tribune...")
+    print("📰 Generating The Triangle Tribune with real news...")
 
-    # Fetch news
+    # Fetch real news
     news_by_category = fetch_today_news()
 
     # Generate HTML
@@ -364,7 +571,8 @@ def main():
         f.write(html)
 
     total_stories = sum(len(stories) for stories in news_by_category.values())
-    print(f"✅ Generated index.html with {total_stories} total stories across 7 categories")
+    print(f"✅ Generated index.html with {total_stories} REAL stories across 7 categories")
+    print("📡 Sources: NewsAPI + RSS feeds from BBC, Reuters, CNN, WRAL, ESPN, TechCrunch, Nature, Bloomberg")
 
 if __name__ == '__main__':
     main()
