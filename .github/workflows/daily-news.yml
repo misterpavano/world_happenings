@@ -1,0 +1,38 @@
+name: Daily Triangle Tribune
+
+on:
+  schedule:
+    # Run every day at 7 AM UTC (adjust TZ below for your local time)
+    - cron: '0 12 * * *'  # 7 AM EST/EDT (UTC-4/5)
+  workflow_dispatch:  # Allow manual trigger
+
+permissions:
+  contents: write
+
+jobs:
+  publish-news:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install requests beautifulsoup4
+
+      - name: Generate and publish newspaper
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python scripts/generate_news.py
+
+      - name: Commit and push
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add index.html
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Daily update: The Triangle Tribune for $(date +%Y-%m-%d)" && git push)
