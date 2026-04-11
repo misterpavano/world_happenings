@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>The Triangle Tribune</title>
+  <title>The Triangle Tribune — April 11, 2026</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap');
 
@@ -17,7 +17,6 @@
       line-height: 1.6;
     }
 
-    /* ── MOBILE STICKY TOP NAV ── */
     nav.floating-nav {
       position: fixed;
       top: 0;
@@ -29,7 +28,6 @@
       z-index: 1000;
       display: flex;
       overflow-x: auto;
-      overflow-y: hidden;
       -webkit-overflow-scrolling: touch;
     }
 
@@ -37,13 +35,8 @@
       height: 3px;
     }
 
-    nav.floating-nav::-webkit-scrollbar-track {
-      background: #0a0a0a;
-    }
-
     nav.floating-nav::-webkit-scrollbar-thumb {
       background: #8b2020;
-      border-radius: 3px;
     }
 
     nav.floating-nav a {
@@ -62,6 +55,7 @@
       transition: all 0.2s ease;
       white-space: nowrap;
       min-height: 44px;
+      cursor: pointer;
     }
 
     nav.floating-nav a:hover {
@@ -74,7 +68,6 @@
       color: #ffd700;
     }
 
-    /* ── PAGE WRAPPER ── */
     .page-wrapper {
       margin-top: 50px;
       padding: 0 12px 40px;
@@ -87,7 +80,6 @@
       border-radius: 4px;
     }
 
-    /* ── MASTHEAD ── */
     .masthead {
       text-align: center;
       padding: 18px 12px 8px;
@@ -130,7 +122,6 @@
       margin-top: 4px;
     }
 
-    /* ── SECTION LABELS ── */
     .section-label {
       font-family: 'Playfair Display', serif;
       font-weight: 700;
@@ -148,7 +139,6 @@
       background: #8b2020;
     }
 
-    /* ── GRID (Mobile: 1 col, Tablet: 2 col) ── */
     .grid {
       display: grid;
       gap: 0;
@@ -157,15 +147,6 @@
       border: 1px solid #c8b89a;
     }
 
-    .grid.two-col {
-      grid-template-columns: 1fr;
-    }
-
-    .grid.three-col {
-      grid-template-columns: 1fr;
-    }
-
-    /* ── ARTICLE ── */
     article {
       padding: 12px;
       border-bottom: 1px solid #c8b89a;
@@ -232,7 +213,6 @@
       text-decoration: underline;
     }
 
-    /* ── SECTION VISIBILITY ── */
     section.news-section {
       display: none;
     }
@@ -241,7 +221,6 @@
       display: block;
     }
 
-    /* ── TICKER ── */
     .ticker {
       background: #1a1a1a;
       color: #f4f0e6;
@@ -259,11 +238,6 @@
       margin-bottom: 4px;
     }
 
-    .ticker span:last-child {
-      margin-bottom: 0;
-    }
-
-    /* ── FOOTER ── */
     footer {
       text-align: center;
       font-size: 9px;
@@ -274,7 +248,6 @@
       line-height: 1.4;
     }
 
-    /* ── TABLET (768px+) ── */
     @media (min-width: 768px) {
       nav.floating-nav {
         position: fixed;
@@ -296,7 +269,6 @@
         border-bottom: none;
         min-height: 50px;
         padding: 12px 10px;
-        writing-mode: horizontal-tb;
       }
 
       nav.floating-nav a.active {
@@ -314,54 +286,18 @@
         font-size: 64px;
       }
 
-      .grid.two-col {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .grid.three-col {
+      .grid {
         grid-template-columns: 1fr 1fr 1fr;
       }
 
       article {
         padding: 14px;
       }
-
-      h3.headline {
-        font-size: 16px;
-      }
-
-      .body-copy {
-        font-size: 14px;
-      }
-    }
-
-    /* ── DESKTOP (1024px+) ── */
-    @media (min-width: 1024px) {
-      .page-wrapper {
-        padding: 0 20px 40px;
-      }
-
-      .page {
-        max-width: 1100px;
-      }
-
-      .grid.two-col {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .grid.three-col {
-        grid-template-columns: 1fr 1fr 1fr;
-      }
-
-      article {
-        padding: 16px;
-      }
     }
   </style>
 </head>
 <body>
 
-<!-- FLOATING NAVIGATION -->
 <nav class="floating-nav">
   <a class="nav-link active" data-section="world">World</a>
   <a class="nav-link" data-section="us">U.S.</a>
@@ -375,523 +311,332 @@
 <div class="page-wrapper">
 <div class="page">
 
-  <!-- MASTHEAD -->
   <header class="masthead">
     <div class="masthead-top">VOL. CXLII · NO. 100 · ESTABLISHED 1884</div>
     <div class="paper-name">The Triangle Tribune</div>
     <div class="paper-tagline">All the News Fit to Read</div>
     <div class="masthead-bottom">
-      FRIDAY, APRIL 10, 2026 · ⬥ MORNING EDITION · RALEIGH · DURHAM · CHAPEL HILL
+      Saturday, April 11, 2026 · ⬥ MORNING EDITION · RALEIGH · DURHAM · CHAPEL HILL
     </div>
   </header>
 
-  <!-- WORLD NEWS -->
   <section id="world" class="news-section active">
-    <div class="section-label">World News</div>
-    <div class="grid three-col">
+    <div class="section-label ">World News</div>
+    <div class="grid">
       <article>
-        <div class="kicker">Middle East</div>
-        <h3 class="headline">U.S. and Iran Hold Make-or-Break Ceasefire Talks This Weekend</h3>
-        <p class="body-copy">Crucial negotiations between Washington and Tehran are set to unfold this weekend in Islamabad, with senior diplomats from both sides convening under Pakistani mediation.</p>
-        <a class="read-more" href="https://www.cnn.com/" target="_blank" rel="noopener">Read Full Story →</a>
-        <p class="source-tag">Source: <a href="https://www.cnn.com/" target="_blank" rel="noopener">CNN</a></p>
+        <div class="kicker">WORLD</div>
+        <h3 class="headline">HYBE&#x27;s 1st Latin boy band SANTOS BRAVOS lands in Seoul as K-pop expands global p</h3>
+        <p class="body-copy">A Latin boy band appearing at HYBE Labels headquarters in the heart of Seoul would have seemed unlikely not long ago. For SANTOS BRAVOS, the moment...</p>
+        <a class="read-more" href="https://www.koreatimes.co.kr/entertainment/k-pop/20260410/hybes-1st-latin-boy-band-santos-bravos-lands-in-seoul-as-k-pop-expands-global-push" target="_blank" rel="noopener">Read Full Story →</a>
+        <p class="source-tag">Source: <a href="https://www.koreatimes.co.kr/entertainment/k-pop/20260410/hybes-1st-latin-boy-band-santos-bravos-lands-in-seoul-as-k-pop-expands-global-push" target="_blank" rel="noopener">코리아타임스</a></p>
       </article>
       <article>
-        <div class="kicker">Europe</div>
-        <h3 class="headline">Hungary Votes Sunday — Orbán's 16-Year Reign at Stake</h3>
-        <p class="body-copy">Hungarian citizens head to the polls on Sunday in an election that could end Viktor Orbán's grip on power. Opposition parties have unified under a single coalition.</p>
-        <a class="read-more" href="https://www.justsecurity.org/" target="_blank" rel="noopener">Read Full Story →</a>
-        <p class="source-tag">Source: <a href="https://www.justsecurity.org/" target="_blank" rel="noopener">Just Security</a></p>
+        <div class="kicker">WORLD</div>
+        <h3 class="headline">Attain Finance Successfully Upsizes Heights Finance Credit Facility</h3>
+        <p class="body-copy">GREENVILLE, S.C. — Attain Finance (“Attain” or the “Company”), a leading consumer finance company, today announced it has successfully completed the upsizing of its Heights Finance 2025-A credit facil</p>
+        <a class="read-more" href="https://financialpost.com/pmn/business-wire-news-releases-pmn/attain-finance-successfully-upsizes-heights-finance-credit-facility" target="_blank" rel="noopener">Read Full Story →</a>
+        <p class="source-tag">Source: <a href="https://financialpost.com/pmn/business-wire-news-releases-pmn/attain-finance-successfully-upsizes-heights-finance-credit-facility" target="_blank" rel="noopener">Financial Post</a></p>
       </article>
       <article>
-        <div class="kicker">Americas</div>
-        <h3 class="headline">Cuban President Díaz-Canel: "I Will Not Step Down"</h3>
-        <p class="body-copy">Cuban President Miguel Díaz-Canel told NBC's Meet the Press he has no intention of resigning despite sustained American pressure and economic hardship.</p>
-        <a class="read-more" href="https://www.justsecurity.org/" target="_blank" rel="noopener">Read Full Story →</a>
-        <p class="source-tag">Source: <a href="https://www.justsecurity.org/" target="_blank" rel="noopener">Just Security</a></p>
+        <div class="kicker">WORLD</div>
+        <h3 class="headline">From Drill, Baby, Drill to Toll, Baby, Toll (Paul Krugman)</h3>
+        <p class="body-copy">Paul Krugman:
+From Drill, Baby, Drill to Toll, Baby, Toll  —  The Iran debacle and global power  —  The U.S. attack on Iran will end badly.  It&#x27;s still not clear, however, exactly what that bad end wi</p>
+        <a class="read-more" href="https://www.memeorandum.com/260410/p23" target="_blank" rel="noopener">Read Full Story →</a>
+        <p class="source-tag">Source: <a href="https://www.memeorandum.com/260410/p23" target="_blank" rel="noopener">Memeorandum.com</a></p>
       </article>
       <article>
-        <div class="kicker">Africa</div>
-        <h3 class="headline">Nigerian General Killed in Jihadist Raid on Army Base</h3>
-        <p class="body-copy">Brigadier General Oseni Omoh Braimah and several soldiers were killed when suspected jihadist militants stormed an army installation in Nigeria's restive northeast.</p>
-        <a class="read-more" href="https://www.bbc.com/news" target="_blank" rel="noopener">Read Full Story →</a>
-        <p class="source-tag">Source: <a href="https://www.bbc.com/" target="_blank" rel="noopener">BBC News</a></p>
-      </article>
-      <article>
-        <div class="kicker">Asia</div>
-        <h3 class="headline">Japan Reports Economic Growth Despite Global Headwinds</h3>
-        <p class="body-copy">Japan's economy grows 1.2% annually, driven by strong corporate earnings and a weak yen that boosts exports, defying earlier recession warnings.</p>
-        <a class="read-more" href="https://www.reuters.com/business" target="_blank" rel="noopener">Read Full Story →</a>
-        <p class="source-tag">Source: <a href="https://www.reuters.com/" target="_blank" rel="noopener">Reuters</a></p>
-      </article>
-      <article>
-        <div class="kicker">Pacific</div>
-        <h3 class="headline">Australia Signs Pacific Security Deal Amid China Tensions</h3>
-        <p class="body-copy">Australia agrees to new defense partnerships with Pacific Island nations in response to growing Chinese influence in the region.</p>
-        <a class="read-more" href="https://www.theguardian.com/world" target="_blank" rel="noopener">Read Full Story →</a>
-        <p class="source-tag">Source: <a href="https://www.theguardian.com/" target="_blank" rel="noopener">The Guardian</a></p>
-      </article>
-      <article>
-        <div class="kicker">Global</div>
-        <h3 class="headline">UN Climate Summit Sets New Carbon Reduction Targets</h3>
-        <p class="body-copy">Nations commit to reducing carbon emissions by 45% by 2035 in landmark agreement signed in Geneva at the International Climate Forum.</p>
-        <a class="read-more" href="https://www.un.org/climate" target="_blank" rel="noopener">Read Full Story →</a>
-        <p class="source-tag">Source: <a href="https://www.un.org/" target="_blank" rel="noopener">United Nations</a></p>
-      </article>
-      <article>
-        <div class="kicker">Europe</div>
-        <h3 class="headline">UK Inflation Falls Below 2% for First Time in Three Years</h3>
-        <p class="body-copy">The British economy shows signs of cooling with inflation dropping to 1.8%, providing relief to consumers and allowing the Bank of England to consider rate cuts.</p>
-        <a class="read-more" href="https://www.ft.com/" target="_blank" rel="noopener">Read Full Story →</a>
-        <p class="source-tag">Source: <a href="https://www.ft.com/" target="_blank" rel="noopener">Financial Times</a></p>
-      </article>
-      <article>
-        <div class="kicker">Trade</div>
-        <h3 class="headline">OPEC+ Extends Oil Production Cuts Through Year-End</h3>
-        <p class="body-copy">OPEC+ announces continuation of production cuts aimed at stabilizing oil prices and supporting global economic recovery efforts.</p>
-        <a class="read-more" href="https://www.opec.org" target="_blank" rel="noopener">Read Full Story →</a>
-        <p class="source-tag">Source: <a href="https://www.opec.org" target="_blank" rel="noopener">OPEC</a></p>
+        <div class="kicker">WORLD</div>
+        <h3 class="headline">NIO Inc. Files Its Annual Report on Form 20-F</h3>
+        <p class="body-copy">SHANGHAI, April 10, 2026 (GLOBE NEWSWIRE) -- NIO Inc. (NYSE: NIO; HKEX: 9866; SGX: NIO) (“NIO” or the “Company”), a pioneer and a leading company in the global smart electric vehicle market, today fil</p>
+        <a class="read-more" href="https://www.globenewswire.com/news-release/2026/04/10/3271715/0/en/NIO-Inc-Files-Its-Annual-Report-on-Form-20-F.html" target="_blank" rel="noopener">Read Full Story →</a>
+        <p class="source-tag">Source: <a href="https://www.globenewswire.com/news-release/2026/04/10/3271715/0/en/NIO-Inc-Files-Its-Annual-Report-on-Form-20-F.html" target="_blank" rel="noopener">GlobeNewswire</a></p>
       </article>
     </div>
   </section>
 
-  <!-- U.S. NEWS -->
   <section id="us" class="news-section">
     <div class="section-label highlight">U.S. News</div>
-    <div class="grid three-col">
+    <div class="grid">
       <article>
-        <div class="kicker">Economy</div>
-        <h3 class="headline">Gas Prices Surge 21% in March — Largest Jump Since 1967</h3>
-        <p class="body-copy">Gasoline prices leaped 21.2% in a single month, driven by Iranian conflict disruptions. The spike marks the steepest single-month fuel increase in nearly six decades.</p>
-        <a class="read-more" href="https://www.cnn.com/business" target="_blank" rel="noopener">Read Full Story →</a>
-        <p class="source-tag">Source: <a href="https://www.cnn.com/" target="_blank" rel="noopener">CNN Business</a></p>
+        <div class="kicker">US</div>
+        <h3 class="headline">HYBE&#x27;s 1st Latin boy band SANTOS BRAVOS lands in Seoul as K-pop expands global p</h3>
+        <p class="body-copy">A Latin boy band appearing at HYBE Labels headquarters in the heart of Seoul would have seemed unlikely not long ago. For SANTOS BRAVOS, the moment...</p>
+        <a class="read-more" href="https://www.koreatimes.co.kr/entertainment/k-pop/20260410/hybes-1st-latin-boy-band-santos-bravos-lands-in-seoul-as-k-pop-expands-global-push" target="_blank" rel="noopener">Read Full Story →</a>
+        <p class="source-tag">Source: <a href="https://www.koreatimes.co.kr/entertainment/k-pop/20260410/hybes-1st-latin-boy-band-santos-bravos-lands-in-seoul-as-k-pop-expands-global-push" target="_blank" rel="noopener">코리아타임스</a></p>
       </article>
       <article>
-        <div class="kicker">Press Freedom</div>
-        <h3 class="headline">Judge Blocks Pentagon Press Restrictions</h3>
-        <p class="body-copy">A federal judge issued a ruling blocking the Pentagon's attempt to curtail journalists' access to military briefings and facilities, calling it a mark of autocracy.</p>
-        <a class="read-more" href="https://www.washingtonpost.com/" target="_blank" rel="noopener">Read Full Story →</a>
-        <p class="source-tag">Source: <a href="https://www.washingtonpost.com/" target="_blank" rel="noopener">Washington Post</a></p>
+        <div class="kicker">US</div>
+        <h3 class="headline">Attain Finance Successfully Upsizes Heights Finance Credit Facility</h3>
+        <p class="body-copy">GREENVILLE, S.C. — Attain Finance (“Attain” or the “Company”), a leading consumer finance company, today announced it has successfully completed the upsizing of its Heights Finance 2025-A credit facil</p>
+        <a class="read-more" href="https://financialpost.com/pmn/business-wire-news-releases-pmn/attain-finance-successfully-upsizes-heights-finance-credit-facility" target="_blank" rel="noopener">Read Full Story →</a>
+        <p class="source-tag">Source: <a href="https://financialpost.com/pmn/business-wire-news-releases-pmn/attain-finance-successfully-upsizes-heights-finance-credit-facility" target="_blank" rel="noopener">Financial Post</a></p>
       </article>
       <article>
-        <div class="kicker">Weather</div>
-        <h3 class="headline">Major Flood Threat Grips Hawaii as Storm Reaches Peak</h3>
-        <p class="body-copy">A powerful multi-day storm hammering the Hawaiian Islands is reaching maximum intensity, issuing flash-flood watches statewide.</p>
-        <a class="read-more" href="https://www.weather.gov" target="_blank" rel="noopener">Read Full Story →</a>
-        <p class="source-tag">Source: <a href="https://www.noaa.gov" target="_blank" rel="noopener">NOAA</a></p>
+        <div class="kicker">US</div>
+        <h3 class="headline">Loitering Munition Market Projected to Surpass USD 29.48 Billion by 2035, Driven</h3>
+        <p class="body-copy">Strategic Shift Toward Autonomous Kamikaze Drones Triggers a 20.25% CAGR as Global Defense Budgets Prioritize Low-Cost Aerial Attrition. Strategic Shift Toward Autonomous Kamikaze Drones Triggers a 20</p>
+        <a class="read-more" href="https://www.globenewswire.com/news-release/2026/04/10/3271718/0/en/Loitering-Munition-Market-Projected-to-Surpass-USD-29-48-Billion-by-2035-Driven-by-Precision-Warfare-Demand-SNS-Insider.html" target="_blank" rel="noopener">Read Full Story →</a>
+        <p class="source-tag">Source: <a href="https://www.globenewswire.com/news-release/2026/04/10/3271718/0/en/Loitering-Munition-Market-Projected-to-Surpass-USD-29-48-Billion-by-2035-Driven-by-Precision-Warfare-Demand-SNS-Insider.html" target="_blank" rel="noopener">GlobeNewswire</a></p>
       </article>
       <article>
-        <div class="kicker">Congress</div>
-        <h3 class="headline">Senate Passes Landmark Infrastructure Bill Extension</h3>
-        <p class="body-copy">The Senate votes 68-32 to extend the Infrastructure Investment and Jobs Act with new funding for rural broadband and electric vehicle charging stations.</p>
-        <a class="read-more" href="https://www.congress.gov" target="_blank" rel="noopener">Read Full Story →</a>
-        <p class="source-tag">Source: <a href="https://www.congress.gov" target="_blank" rel="noopener">Congress.gov</a></p>
-      </article>
-      <article>
-        <div class="kicker">Healthcare</div>
-        <h3 class="headline">FDA Approves New Diabetes Drug with Surprising Heart Benefits</h3>
-        <p class="body-copy">The FDA green-lights a new GLP-1 drug that not only controls blood sugar but also reduces cardiovascular risk by 35% in clinical trials.</p>
-        <a class="read-more" href="https://www.fda.gov/" target="_blank" rel="noopener">Read Full Story →</a>
-        <p class="source-tag">Source: <a href="https://www.fda.gov/" target="_blank" rel="noopener">FDA</a></p>
-      </article>
-      <article>
-        <div class="kicker">Education</div>
-        <h3 class="headline">Student Loan Repayment Program Expands to 12 Million Borrowers</h3>
-        <p class="body-copy">The Department of Education announces major expansion of income-driven repayment plans, providing relief to millions of students carrying federal loans.</p>
-        <a class="read-more" href="https://www.ed.gov/" target="_blank" rel="noopener">Read Full Story →</a>
-        <p class="source-tag">Source: <a href="https://www.ed.gov/" target="_blank" rel="noopener">Dept. of Education</a></p>
-      </article>
-      <article>
-        <div class="kicker">Labor</div>
-        <h3 class="headline">Unemployment Drops to 3.7%, Lowest in Two Years</h3>
-        <p class="body-copy">The U.S. adds 250,000 jobs in March as unemployment falls and wage growth accelerates, signaling economic resilience.</p>
-        <a class="read-more" href="https://www.bls.gov/" target="_blank" rel="noopener">Read Full Story →</a>
-        <p class="source-tag">Source: <a href="https://www.bls.gov/" target="_blank" rel="noopener">Bureau of Labor Statistics</a></p>
-      </article>
-      <article>
-        <div class="kicker">Environment</div>
-        <h3 class="headline">EPA Announces New Air Quality Standards for 2027</h3>
-        <p class="body-copy">The Environmental Protection Agency sets stricter air quality standards designed to reduce particulate matter and ozone pollution in major cities.</p>
-        <a class="read-more" href="https://www.epa.gov/" target="_blank" rel="noopener">Read Full Story →</a>
-        <p class="source-tag">Source: <a href="https://www.epa.gov/" target="_blank" rel="noopener">EPA</a></p>
-      </article>
-      <article>
-        <div class="kicker">Transportation</div>
-        <h3 class="headline">Interstate 95 Expansion Project Gets $2 Billion Federal Approval</h3>
-        <p class="body-copy">The Federal Highway Administration approves $2 billion in funding for a major I-95 expansion project across five northeastern states.</p>
-        <a class="read-more" href="https://www.transportation.gov/" target="_blank" rel="noopener">Read Full Story →</a>
-        <p class="source-tag">Source: <a href="https://www.dot.gov/" target="_blank" rel="noopener">DOT</a></p>
+        <div class="kicker">US</div>
+        <h3 class="headline">KWM Signs Exclusive Global Distribution Agreement with HYBE Covering BTS, SEVENT</h3>
+        <p class="body-copy">Through Play Company, KWM secures worldwide distribution rights for concert DVDs and digital codes. Substantial revenue generation expected as BTS launches its first world tour since members&#x27; return f</p>
+        <a class="read-more" href="https://www.globenewswire.com/news-release/2026/04/10/3271729/0/en/KWM-Signs-Exclusive-Global-Distribution-Agreement-with-HYBE-Covering-BTS-SEVENTEEN-LE-SSERAFIM-and-More-Targeting-Annual-Revenue-in-Excess-of-100-Million.html" target="_blank" rel="noopener">Read Full Story →</a>
+        <p class="source-tag">Source: <a href="https://www.globenewswire.com/news-release/2026/04/10/3271729/0/en/KWM-Signs-Exclusive-Global-Distribution-Agreement-with-HYBE-Covering-BTS-SEVENTEEN-LE-SSERAFIM-and-More-Targeting-Annual-Revenue-in-Excess-of-100-Million.html" target="_blank" rel="noopener">GlobeNewswire</a></p>
       </article>
     </div>
   </section>
 
-  <!-- LOCAL NEWS -->
   <section id="local" class="news-section">
     <div class="section-label highlight">RTP & Triangle Local</div>
-    <div class="grid three-col">
+    <div class="grid">
       <article>
-        <div class="kicker">Education · Chapel Hill</div>
-        <h3 class="headline">Chapel Hill-Carrboro Schools Vote to Cut 22 Staff Positions</h3>
-        <p class="body-copy">The board voted to cut 22 staff positions to save $1.5-2 million annually amid declining enrollment and charter school competition.</p>
-        <a class="read-more" href="https://www.wral.com/" target="_blank" rel="noopener">Read Full Story →</a>
-        <p class="source-tag">Source: <a href="https://www.wral.com/" target="_blank" rel="noopener">WRAL News</a></p>
+        <div class="kicker">LOCAL</div>
+        <h3 class="headline">Yankees prospects: Lombard homers in Somerset blowout</h3>
+        <p class="body-copy">Recapping the Yankees’ minor league affiliates’ results from April 9th.</p>
+        <a class="read-more" href="https://www.pinstripealley.com/yankees-prospects/182971/yankees-top-prospects-george-lombard-homer-dominguez-jones-serna" target="_blank" rel="noopener">Read Full Story →</a>
+        <p class="source-tag">Source: <a href="https://www.pinstripealley.com/yankees-prospects/182971/yankees-top-prospects-george-lombard-homer-dominguez-jones-serna" target="_blank" rel="noopener">Pinstripe Alley</a></p>
       </article>
       <article>
-        <div class="kicker">Crime · Durham</div>
-        <h3 class="headline">Stolen Vehicle Linked to Dozen Break-Ins Across Counties</h3>
-        <p class="body-copy">A recovered, burned stolen vehicle connects at least twelve break-ins across Orange and Durham Counties in coordinated crime spree.</p>
-        <a class="read-more" href="https://www.wral.com/" target="_blank" rel="noopener">Read Full Story →</a>
-        <p class="source-tag">Source: <a href="https://www.wral.com/" target="_blank" rel="noopener">WRAL News</a></p>
+        <div class="kicker">LOCAL</div>
+        <h3 class="headline">Opus Genetics Announces Data Presentations at the 2026 American Society of Catar</h3>
+        <p class="body-copy">Opus Genetics Announces Data Presentations at the 2026 American Society of Cataract and Refractive Surgery Annual Meeting ...</p>
+        <a class="read-more" href="https://www.globenewswire.com/news-release/2026/04/10/3271649/0/en/Opus-Genetics-Announces-Data-Presentations-at-the-2026-American-Society-of-Cataract-and-Refractive-Surgery-Annual-Meeting.html" target="_blank" rel="noopener">Read Full Story →</a>
+        <p class="source-tag">Source: <a href="https://www.globenewswire.com/news-release/2026/04/10/3271649/0/en/Opus-Genetics-Announces-Data-Presentations-at-the-2026-American-Society-of-Cataract-and-Refractive-Surgery-Annual-Meeting.html" target="_blank" rel="noopener">GlobeNewswire</a></p>
       </article>
       <article>
-        <div class="kicker">Transit · Apex</div>
-        <h3 class="headline">GoApex Transit Expands with New Sunday Service April 18</h3>
-        <p class="body-copy">GoApex merges with GoCary service featuring 30-minute frequency and new Sunday routes launching this weekend.</p>
-        <a class="read-more" href="https://www.apexnc.org/" target="_blank" rel="noopener">Read Full Story →</a>
-        <p class="source-tag">Source: <a href="https://www.apexnc.org/" target="_blank" rel="noopener">Town of Apex</a></p>
+        <div class="kicker">LOCAL</div>
+        <h3 class="headline">For White-Collar Workers, AI Also Stands for “Apocalyptic Insecurity”</h3>
+        <p class="body-copy">Every day, Jade, 30, logs into her insurance tech job in Raleigh, North Carolina, to optimize systems with AI. She does her work diligently. But she can’t stop the feeling she’s building processes tha</p>
+        <a class="read-more" href="https://newrepublic.com/article/208683/white-collar-workers-ai-apocalyptic-insecurity" target="_blank" rel="noopener">Read Full Story →</a>
+        <p class="source-tag">Source: <a href="https://newrepublic.com/article/208683/white-collar-workers-ai-apocalyptic-insecurity" target="_blank" rel="noopener">The New Republic</a></p>
       </article>
       <article>
-        <div class="kicker">Development · RTP</div>
-        <h3 class="headline">RTP 3.0 Strategy Charts Next 50 Years for Innovation Park</h3>
-        <p class="body-copy">Research Triangle Park advances RTP 3.0 master plan for 7,000 acres of mixed-use sustainable development and tech corridors.</p>
-        <a class="read-more" href="https://www.rtp.org/" target="_blank" rel="noopener">Read Full Story →</a>
-        <p class="source-tag">Source: <a href="https://www.rtp.org/" target="_blank" rel="noopener">RTP.org</a></p>
-      </article>
-      <article>
-        <div class="kicker">Business · Cary</div>
-        <h3 class="headline">Tech Startup Funding Surge Hits Record $485 Million in Region</h3>
-        <p class="body-copy">Venture capital funding for Triangle tech companies reaches all-time high, driven by software development and biotech investments.</p>
-        <a class="read-more" href="https://www.caryinc.org/" target="_blank" rel="noopener">Read Full Story →</a>
-        <p class="source-tag">Source: <a href="https://www.caryinc.org/" target="_blank" rel="noopener">Cary Chamber</a></p>
-      </article>
-      <article>
-        <div class="kicker">Housing · Durham</div>
-        <h3 class="headline">Downtown Durham Residential Boom Adds 400+ New Apartments</h3>
-        <p class="body-copy">Three major residential projects break ground in downtown Durham, adding over 400 luxury and mixed-income apartments to the market.</p>
-        <a class="read-more" href="https://www.durhamac.org/" target="_blank" rel="noopener">Read Full Story →</a>
-        <p class="source-tag">Source: <a href="https://www.durhamac.org/" target="_blank" rel="noopener">Durham Chamber</a></p>
-      </article>
-      <article>
-        <div class="kicker">Parks & Rec · Raleigh</div>
-        <h3 class="headline">Umstead State Park Announces Trail Expansion Project</h3>
-        <p class="body-copy">William B. Umstead State Park unveils plans to add 12 miles of new hiking trails and two new visitor centers by 2027.</p>
-        <a class="read-more" href="https://www.raleighncgov.com/" target="_blank" rel="noopener">Read Full Story →</a>
-        <p class="source-tag">Source: <a href="https://www.raleighncgov.com/" target="_blank" rel="noopener">City of Raleigh</a></p>
-      </article>
-      <article>
-        <div class="kicker">Culture · Chapel Hill</div>
-        <h3 class="headline">Ackland Art Museum Opens Major Contemporary Collection</h3>
-        <p class="body-copy">UNC's Ackland Art Museum opens exhibition of 150 contemporary works featuring artists from North Carolina and internationally.</p>
-        <a class="read-more" href="https://www.unc.edu/" target="_blank" rel="noopener">Read Full Story →</a>
-        <p class="source-tag">Source: <a href="https://www.unc.edu/" target="_blank" rel="noopener">UNC News</a></p>
-      </article>
-      <article>
-        <div class="kicker">Sports · UNC</div>
-        <h3 class="headline">Tar Heels Hire Coach Michael Malone — "Only Job I'd Take"</h3>
-        <p class="body-copy">New UNC basketball coach Michael Malone says the program is uniquely special and represents the pinnacle of college basketball.</p>
-        <a class="read-more" href="https://indyweek.com/" target="_blank" rel="noopener">Read Full Story →</a>
-        <p class="source-tag">Source: <a href="https://indyweek.com/" target="_blank" rel="noopener">INDY Week</a></p>
+        <div class="kicker">LOCAL</div>
+        <h3 class="headline">Agfa-Gevaert: Convening of Annual General Meeting</h3>
+        <p class="body-copy">April 10, 2026 Regulated information   Agfa-Gevaert: Convening of Annual General Meeting  Mortsel, Belgium – April...</p>
+        <a class="read-more" href="https://www.globenewswire.com/news-release/2026/04/10/3271543/0/en/Agfa-Gevaert-Convening-of-Annual-General-Meeting.html" target="_blank" rel="noopener">Read Full Story →</a>
+        <p class="source-tag">Source: <a href="https://www.globenewswire.com/news-release/2026/04/10/3271543/0/en/Agfa-Gevaert-Convening-of-Annual-General-Meeting.html" target="_blank" rel="noopener">GlobeNewswire</a></p>
       </article>
     </div>
   </section>
 
-  <!-- SPORTS NEWS -->
   <section id="sports" class="news-section">
     <div class="section-label highlight">Sports</div>
-    <div class="grid three-col">
+    <div class="grid">
       <article>
-        <div class="kicker">NBA</div>
-        <h3 class="headline">Knicks Rally Late to Edge Hawks in Playoff Push</h3>
-        <p class="body-copy">New York's grit shows as they surge back in the fourth quarter with clutch defense and Jalen Brunson's leadership keeping playoff hopes alive.</p>
-        <a class="read-more" href="https://www.espn.com/nba" target="_blank" rel="noopener">Read Full Story →</a>
-        <p class="source-tag">Source: <a href="https://www.espn.com/" target="_blank" rel="noopener">ESPN</a></p>
+        <div class="kicker">SPORTS</div>
+        <h3 class="headline">What is at stake this weekend in the Irish Premiership?</h3>
+        <p class="body-copy">A three-point gap at the top and nothing to separate Crusaders and Glenavon at the bottom sets up a gripping finale to the Irish Premiership season.</p>
+        <a class="read-more" href="https://www.bbc.com/sport/football/articles/cvg3rxx0e53o?xtor=AL-72-%5Bpartner%5D-%5Byahoo.north.america%5D-%5Bheadline%5D-%5Bsport%5D-%5Bbizdev%5D-%5Bisapi%5D" target="_blank" rel="noopener">Read Full Story →</a>
+        <p class="source-tag">Source: <a href="https://www.bbc.com/sport/football/articles/cvg3rxx0e53o?xtor=AL-72-%5Bpartner%5D-%5Byahoo.north.america%5D-%5Bheadline%5D-%5Bsport%5D-%5Bbizdev%5D-%5Bisapi%5D" target="_blank" rel="noopener">BBC News</a></p>
       </article>
       <article>
-        <div class="kicker">Premier League</div>
-        <h3 class="headline">Liverpool Edges Rivals in Tense Title Race Matchup</h3>
-        <p class="body-copy">Mohamed Salah's penalty in the 67th minute secures a crucial away victory as Liverpool maintains pressure in the English top division title race.</p>
-        <a class="read-more" href="https://www.premierleague.com/" target="_blank" rel="noopener">Read Full Story →</a>
-        <p class="source-tag">Source: <a href="https://www.premierleague.com/" target="_blank" rel="noopener">Premier League</a></p>
+        <div class="kicker">SPORTS</div>
+        <h3 class="headline">José Ramírez, Ronald Acuña Jr., and echoes of October in Atlanta</h3>
+        <p class="body-copy">This week, Sunday Night Baseball on NBC and Peacock features two of MLB&#x27;s best players.</p>
+        <a class="read-more" href="https://www.nbcsports.com/mlb/news/jose-ramirez-ronald-acuna-jr-and-echoes-of-october-in-atlanta" target="_blank" rel="noopener">Read Full Story →</a>
+        <p class="source-tag">Source: <a href="https://www.nbcsports.com/mlb/news/jose-ramirez-ronald-acuna-jr-and-echoes-of-october-in-atlanta" target="_blank" rel="noopener">NBCSports.com</a></p>
       </article>
       <article>
-        <div class="kicker">College Basketball</div>
-        <h3 class="headline">UNC Announces Malone as New Head Coach</h3>
-        <p class="body-copy">Michael Malone becomes the new face of UNC basketball, vowing to restore the program to elite championship contention within three seasons.</p>
-        <a class="read-more" href="https://indyweek.com/" target="_blank" rel="noopener">Read Full Story →</a>
-        <p class="source-tag">Source: <a href="https://indyweek.com/" target="_blank" rel="noopener">INDY Week</a></p>
+        <div class="kicker">SPORTS</div>
+        <h3 class="headline">AVAX One to Participate in Upcoming Conferences in April 2026</h3>
+        <p class="body-copy">WEST PALM BEACH, FL, April 10, 2026 (GLOBE NEWSWIRE) -- AVAX One Technology Ltd. (Nasdaq: AVX) (“AVAX One” or the &quot;Company&quot;), today announced its participation in the upcoming Centri Capital Conferenc</p>
+        <a class="read-more" href="https://www.globenewswire.com/news-release/2026/04/10/3271717/0/en/AVAX-One-to-Participate-in-Upcoming-Conferences-in-April-2026.html" target="_blank" rel="noopener">Read Full Story →</a>
+        <p class="source-tag">Source: <a href="https://www.globenewswire.com/news-release/2026/04/10/3271717/0/en/AVAX-One-to-Participate-in-Upcoming-Conferences-in-April-2026.html" target="_blank" rel="noopener">GlobeNewswire</a></p>
       </article>
       <article>
-        <div class="kicker">NBA Playoffs</div>
-        <h3 class="headline">Lakers Defeat Suns in Overtime Thriller in Western Conference</h3>
-        <p class="body-copy">LeBron James scores 38 points to lead the Lakers past Phoenix in a double-overtime playoff battle that keeps their championship hopes alive.</p>
-        <a class="read-more" href="https://www.nba.com/" target="_blank" rel="noopener">Read Full Story →</a>
-        <p class="source-tag">Source: <a href="https://www.nba.com/" target="_blank" rel="noopener">NBA.com</a></p>
+        <div class="kicker">SPORTS</div>
+        <h3 class="headline">Season Ticket prices at Hill Dickinson Stadium go up again for 2026-27</h3>
+        <p class="body-copy">Everton have announced their Season Ticket pricing for the 2026-27 campaign, confirming that most supporters will face another price hike as the club enters its second year at the Hill Dickinson Stadi</p>
+        <a class="read-more" href="http://www.toffeeweb.com/season/25-26/news/47457.html" target="_blank" rel="noopener">Read Full Story →</a>
+        <p class="source-tag">Source: <a href="http://www.toffeeweb.com/season/25-26/news/47457.html" target="_blank" rel="noopener">Toffeeweb</a></p>
       </article>
       <article>
-        <div class="kicker">Soccer</div>
-        <h3 class="headline">Manchester City Extends Premier League Lead with Dominant Victory</h3>
-        <p class="body-copy">Manchester City defeats Newcastle 3-0 to extend their Premier League lead to eight points with five matches remaining in the season.</p>
-        <a class="read-more" href="https://www.mancity.com/" target="_blank" rel="noopener">Read Full Story →</a>
-        <p class="source-tag">Source: <a href="https://www.mancity.com/" target="_blank" rel="noopener">Manchester City</a></p>
+        <div class="kicker">SPORTS</div>
+        <h3 class="headline">How to Fight a War in Space</h3>
+        <p class="body-copy">Space lasers and orbital nuclear weapons could be how World War III begins, Bloomberg Opinion columnist Andreas Kluth explains. (Source: Bloomberg)</p>
+        <a class="read-more" href="https://www.bloomberg.com/news/videos/2026-04-11/opinion-how-to-fight-a-war-in-space-video" target="_blank" rel="noopener">Read Full Story →</a>
+        <p class="source-tag">Source: <a href="https://www.bloomberg.com/news/videos/2026-04-11/opinion-how-to-fight-a-war-in-space-video" target="_blank" rel="noopener">Bloomberg Markets</a></p>
       </article>
       <article>
-        <div class="kicker">Tennis</div>
-        <h3 class="headline">Djokovic Advances to ATP Masters Final in Monte Carlo</h3>
-        <p class="body-copy">Novak Djokovic defeats Carlos Alcaraz in semifinals to reach the Monte Carlo Masters final, his fourth final appearance this year.</p>
-        <a class="read-more" href="https://www.atptour.com/" target="_blank" rel="noopener">Read Full Story →</a>
-        <p class="source-tag">Source: <a href="https://www.atptour.com/" target="_blank" rel="noopener">ATP Tour</a></p>
+        <div class="kicker">SPORTS</div>
+        <h3 class="headline">The Choke Point That Could Break the Global Economy</h3>
+        <p class="body-copy">The war with Iran has already cost lives, billions of dollars, and shaken the foundations of the global economy and the worst may be yet to come. Afsaneh Beschloss of RockCreek tells us why Russia and</p>
+        <a class="read-more" href="https://www.bloomberg.com/news/videos/2026-04-11/the-choke-point-that-could-break-the-global-economy-video" target="_blank" rel="noopener">Read Full Story →</a>
+        <p class="source-tag">Source: <a href="https://www.bloomberg.com/news/videos/2026-04-11/the-choke-point-that-could-break-the-global-economy-video" target="_blank" rel="noopener">Bloomberg Markets</a></p>
       </article>
       <article>
-        <div class="kicker">Football</div>
-        <h3 class="headline">NFL Draft Coverage Reveals Top College Prospects for 2026</h3>
-        <p class="body-copy">Top quarterback prospects and defensive stars from elite college programs emerge as likely first-round picks in the upcoming professional draft.</p>
-        <a class="read-more" href="https://www.nfl.com/" target="_blank" rel="noopener">Read Full Story →</a>
-        <p class="source-tag">Source: <a href="https://www.nfl.com/" target="_blank" rel="noopener">NFL.com</a></p>
-      </article>
-      <article>
-        <div class="kicker">Baseball</div>
-        <h3 class="headline">Opening Day Excitement Builds as Spring Training Concludes</h3>
-        <p class="body-copy">Major League Baseball enters final week of spring training as teams finalize rosters ahead of Opening Day next week.</p>
-        <a class="read-more" href="https://www.mlb.com/" target="_blank" rel="noopener">Read Full Story →</a>
-        <p class="source-tag">Source: <a href="https://www.mlb.com/" target="_blank" rel="noopener">MLB.com</a></p>
-      </article>
-      <article>
-        <div class="kicker">Golf</div>
-        <h3 class="headline">Augusta National Prepares for Masters Tournament Next Month</h3>
-        <p class="body-copy">Augusta National announces full field for upcoming Masters Tournament with record-breaking international participation and fan attendance expected.</p>
-        <a class="read-more" href="https://www.masters.com/" target="_blank" rel="noopener">Read Full Story →</a>
-        <p class="source-tag">Source: <a href="https://www.masters.com/" target="_blank" rel="noopener">The Masters</a></p>
+        <div class="kicker">SPORTS</div>
+        <h3 class="headline">Chokepoints in the Strait of Hormuz and in Producing Critical Minerals</h3>
+        <p class="body-copy">There’s a lot at stake.</p>
+        <a class="read-more" href="https://www.bloomberg.com/news/newsletters/2026-04-11/chokepoints-in-the-strait-of-hormuz-and-in-producing-critical-minerals" target="_blank" rel="noopener">Read Full Story →</a>
+        <p class="source-tag">Source: <a href="https://www.bloomberg.com/news/newsletters/2026-04-11/chokepoints-in-the-strait-of-hormuz-and-in-producing-critical-minerals" target="_blank" rel="noopener">Bloomberg Markets</a></p>
       </article>
     </div>
   </section>
 
-  <!-- SCIENCE NEWS -->
   <section id="science" class="news-section">
     <div class="section-label highlight">Science</div>
-    <div class="grid three-col">
+    <div class="grid">
       <article>
-        <div class="kicker">Climate</div>
-        <h3 class="headline">Arctic Ice Decline Accelerates, Reaching Critical Tipping Point</h3>
-        <p class="body-copy">Scientists warn that melting Arctic ice is reaching a critical tipping point, with implications for global weather patterns and sea levels.</p>
-        <a class="read-more" href="https://www.nasa.gov" target="_blank" rel="noopener">Read Full Story →</a>
-        <p class="source-tag">Source: <a href="https://www.nasa.gov" target="_blank" rel="noopener">NASA</a></p>
+        <div class="kicker">SCIENCE</div>
+        <h3 class="headline">What is at stake this weekend in the Irish Premiership?</h3>
+        <p class="body-copy">A three-point gap at the top and nothing to separate Crusaders and Glenavon at the bottom sets up a gripping finale to the Irish Premiership season.</p>
+        <a class="read-more" href="https://www.bbc.com/sport/football/articles/cvg3rxx0e53o?xtor=AL-72-%5Bpartner%5D-%5Byahoo.north.america%5D-%5Bheadline%5D-%5Bsport%5D-%5Bbizdev%5D-%5Bisapi%5D" target="_blank" rel="noopener">Read Full Story →</a>
+        <p class="source-tag">Source: <a href="https://www.bbc.com/sport/football/articles/cvg3rxx0e53o?xtor=AL-72-%5Bpartner%5D-%5Byahoo.north.america%5D-%5Bheadline%5D-%5Bsport%5D-%5Bbizdev%5D-%5Bisapi%5D" target="_blank" rel="noopener">BBC News</a></p>
       </article>
       <article>
-        <div class="kicker">Health</div>
-        <h3 class="headline">Breakthrough Treatment Shows Promise for Alzheimer's Disease</h3>
-        <p class="body-copy">A new experimental drug demonstrates significant cognitive improvements in early-stage patients, offering hope for millions facing dementia.</p>
-        <a class="read-more" href="https://www.nih.gov/" target="_blank" rel="noopener">Read Full Story →</a>
-        <p class="source-tag">Source: <a href="https://www.nih.gov/" target="_blank" rel="noopener">NIH</a></p>
+        <div class="kicker">SCIENCE</div>
+        <h3 class="headline">Turns Out the Elites Like the Administrative State Better than Democracy</h3>
+        <p class="body-copy">If there is a mantra among progressive American political and media elites, it would be “our democracy,” usually preceded by what they believe to be a threat from the Right. For example, progressives </p>
+        <a class="read-more" href="https://www.shtfplan.com/headline-news/turns-out-the-elites-like-the-administrative-state-better-than-democracy" target="_blank" rel="noopener">Read Full Story →</a>
+        <p class="source-tag">Source: <a href="https://www.shtfplan.com/headline-news/turns-out-the-elites-like-the-administrative-state-better-than-democracy" target="_blank" rel="noopener">Shtfplan.com</a></p>
       </article>
       <article>
-        <div class="kicker">Space</div>
-        <h3 class="headline">James Webb Telescope Captures Earliest Galaxy Images</h3>
-        <p class="body-copy">Unprecedented deep-space observations reveal galaxies formed just 100 million years after the Big Bang, challenging existing cosmological models.</p>
-        <a class="read-more" href="https://www.nasa.gov" target="_blank" rel="noopener">Read Full Story →</a>
-        <p class="source-tag">Source: <a href="https://www.nasa.gov" target="_blank" rel="noopener">NASA</a></p>
+        <div class="kicker">SCIENCE</div>
+        <h3 class="headline">Electric vehicles won’t solve traffic, so what will?</h3>
+        <p class="body-copy">Electric cars, while vital for cleaner air, won&#x27;t solve urban traffic jams. Congestion stems from road space limitations, not fuel type. The article argues for prioritizing efficient public transport,</p>
+        <a class="read-more" href="https://timesofindia.indiatimes.com/auto/news/electric-vehicles-wont-solve-traffic-so-what-will/articleshow/130169757.cms" target="_blank" rel="noopener">Read Full Story →</a>
+        <p class="source-tag">Source: <a href="https://timesofindia.indiatimes.com/auto/news/electric-vehicles-wont-solve-traffic-so-what-will/articleshow/130169757.cms" target="_blank" rel="noopener">The Times of India</a></p>
       </article>
       <article>
-        <div class="kicker">Physics</div>
-        <h3 class="headline">Scientists Achieve New Record for Quantum Computing Qubits</h3>
-        <p class="body-copy">Researchers announce a breakthrough quantum computer with 1,000 qubits, doubling previous record and bringing practical quantum computing closer to reality.</p>
-        <a class="read-more" href="https://www.ibm.com/quantum" target="_blank" rel="noopener">Read Full Story →</a>
-        <p class="source-tag">Source: <a href="https://www.ibm.com/" target="_blank" rel="noopener">IBM Research</a></p>
+        <div class="kicker">SCIENCE</div>
+        <h3 class="headline">Nightfood Holdings Inc. (OTCQB: NGTF) Brings AI-Enabled Robotics Platform to Gro</h3>
+        <p class="body-copy">NEW YORK, April 10, 2026 (GLOBE NEWSWIRE) -- via AINewsWire — Nightfood Holdings inc. (OTCQB: NGTF) today announces its placement in an editorial published by AINewsWire (&quot;AINW&quot;), one of 75+ brands wi</p>
+        <a class="read-more" href="https://www.globenewswire.com/news-release/2026/04/10/3271721/0/en/Nightfood-Holdings-Inc-OTCQB-NGTF-Brings-AI-Enabled-Robotics-Platform-to-Growing-Pharma-Manufacturing-Space.html" target="_blank" rel="noopener">Read Full Story →</a>
+        <p class="source-tag">Source: <a href="https://www.globenewswire.com/news-release/2026/04/10/3271721/0/en/Nightfood-Holdings-Inc-OTCQB-NGTF-Brings-AI-Enabled-Robotics-Platform-to-Growing-Pharma-Manufacturing-Space.html" target="_blank" rel="noopener">GlobeNewswire</a></p>
       </article>
       <article>
-        <div class="kicker">Medicine</div>
-        <h3 class="headline">New Vaccine Offers Protection Against Multiple Cancer Types</h3>
-        <p class="body-copy">Pharmaceutical companies develop personalized cancer vaccines that train immune systems to target tumor cells with unprecedented accuracy.</p>
-        <a class="read-more" href="https://www.fda.gov/" target="_blank" rel="noopener">Read Full Story →</a>
-        <p class="source-tag">Source: <a href="https://www.fda.gov/" target="_blank" rel="noopener">FDA</a></p>
+        <div class="kicker">SCIENCE</div>
+        <h3 class="headline">Author Correction: Multi-omic profiling reveals age-related immune dynamics in h</h3>
+        <p class="body-copy">&lt;p&gt;Nature, Published online: 10 April 2026; &lt;a href=&quot;https://www.nature.com/articles/s41586-026-10484-w&quot;&gt;doi:10.1038/s41586-026-10484-w&lt;/a&gt;&lt;/p&gt;Author Correction: Multi-omic profiling reveals age-relat</p>
+        <a class="read-more" href="https://www.nature.com/articles/s41586-026-10484-w" target="_blank" rel="noopener">Read Full Story →</a>
+        <p class="source-tag">Source: <a href="https://www.nature.com/articles/s41586-026-10484-w" target="_blank" rel="noopener">Nature</a></p>
       </article>
       <article>
-        <div class="kicker">Astronomy</div>
-        <h3 class="headline">New Exoplanet Discovery Indicates Water in Habitable Zone</h3>
-        <p class="body-copy">Astronomers discover an Earth-sized exoplanet 32 light-years away with water and conditions suitable for life as we know it.</p>
-        <a class="read-more" href="https://www.nasa.gov/exoplanet" target="_blank" rel="noopener">Read Full Story →</a>
-        <p class="source-tag">Source: <a href="https://www.nasa.gov" target="_blank" rel="noopener">NASA Exoplanet Archive</a></p>
+        <div class="kicker">SCIENCE</div>
+        <h3 class="headline">How the butterfly got its name: Books in brief</h3>
+        <p class="body-copy">&lt;p&gt;Nature, Published online: 10 April 2026; &lt;a href=&quot;https://www.nature.com/articles/d41586-026-01160-0&quot;&gt;doi:10.1038/d41586-026-01160-0&lt;/a&gt;&lt;/p&gt;Andrew Robinson reviews five of the best science picks.</p>
+        <a class="read-more" href="https://www.nature.com/articles/d41586-026-01160-0" target="_blank" rel="noopener">Read Full Story →</a>
+        <p class="source-tag">Source: <a href="https://www.nature.com/articles/d41586-026-01160-0" target="_blank" rel="noopener">Nature</a></p>
       </article>
       <article>
-        <div class="kicker">Biology</div>
-        <h3 class="headline">Synthetic Biology Creates Novel Organisms with New Capabilities</h3>
-        <p class="body-copy">Researchers use synthetic biology techniques to engineer microorganisms capable of cleaning pollutants and producing sustainable biofuels.</p>
-        <a class="read-more" href="https://www.pnas.org/" target="_blank" rel="noopener">Read Full Story →</a>
-        <p class="source-tag">Source: <a href="https://www.pnas.org/" target="_blank" rel="noopener">PNAS</a></p>
-      </article>
-      <article>
-        <div class="kicker">Ocean</div>
-        <h3 class="headline">Deep-Sea Expedition Discovers New Marine Species at Record Depths</h3>
-        <p class="body-copy">Scientists exploring the Mariana Trench discover 23 new marine species living at 11,000 meters depth with unusual adaptations to extreme pressure.</p>
-        <a class="read-more" href="https://www.noaa.gov/ocean" target="_blank" rel="noopener">Read Full Story →</a>
-        <p class="source-tag">Source: <a href="https://www.noaa.gov/" target="_blank" rel="noopener">NOAA</a></p>
-      </article>
-      <article>
-        <div class="kicker">Paleontology</div>
-        <h3 class="headline">Ancient Fossil Reveals Missing Link in Bird Evolution</h3>
-        <p class="body-copy">Paleontologists announce discovery of a 120-million-year-old fossil that bridges the evolutionary gap between theropod dinosaurs and modern birds.</p>
-        <a class="read-more" href="https://www.smithsonianmag.com/" target="_blank" rel="noopener">Read Full Story →</a>
-        <p class="source-tag">Source: <a href="https://www.si.edu/" target="_blank" rel="noopener">Smithsonian</a></p>
+        <div class="kicker">SCIENCE</div>
+        <h3 class="headline">Behind the scenes with Artemis II’s scientists during the historic Moon fly-by</h3>
+        <p class="body-copy">&lt;p&gt;Nature, Published online: 10 April 2026; &lt;a href=&quot;https://www.nature.com/articles/d41586-026-01208-1&quot;&gt;doi:10.1038/d41586-026-01208-1&lt;/a&gt;&lt;/p&gt;Nature correspondent Alexandra Witze tells us about being</p>
+        <a class="read-more" href="https://www.nature.com/articles/d41586-026-01208-1" target="_blank" rel="noopener">Read Full Story →</a>
+        <p class="source-tag">Source: <a href="https://www.nature.com/articles/d41586-026-01208-1" target="_blank" rel="noopener">Nature</a></p>
       </article>
     </div>
   </section>
 
-  <!-- FINANCE NEWS -->
   <section id="finance" class="news-section">
     <div class="section-label highlight">Finance</div>
-    <div class="grid three-col">
+    <div class="grid">
       <article>
-        <div class="kicker">Markets</div>
-        <h3 class="headline">Stock Market Rallies on Fed Rate Pause Speculation</h3>
-        <p class="body-copy">S&P 500 surges 2.3% as investors bet the Federal Reserve may hold interest rates steady, easing recession concerns.</p>
-        <a class="read-more" href="https://www.cnbc.com/business" target="_blank" rel="noopener">Read Full Story →</a>
-        <p class="source-tag">Source: <a href="https://www.cnbc.com/" target="_blank" rel="noopener">CNBC</a></p>
+        <div class="kicker">FINANCE</div>
+        <h3 class="headline">HYBE&#x27;s 1st Latin boy band SANTOS BRAVOS lands in Seoul as K-pop expands global p</h3>
+        <p class="body-copy">A Latin boy band appearing at HYBE Labels headquarters in the heart of Seoul would have seemed unlikely not long ago. For SANTOS BRAVOS, the moment...</p>
+        <a class="read-more" href="https://www.koreatimes.co.kr/entertainment/k-pop/20260410/hybes-1st-latin-boy-band-santos-bravos-lands-in-seoul-as-k-pop-expands-global-push" target="_blank" rel="noopener">Read Full Story →</a>
+        <p class="source-tag">Source: <a href="https://www.koreatimes.co.kr/entertainment/k-pop/20260410/hybes-1st-latin-boy-band-santos-bravos-lands-in-seoul-as-k-pop-expands-global-push" target="_blank" rel="noopener">코리아타임스</a></p>
       </article>
       <article>
-        <div class="kicker">Crypto</div>
-        <h3 class="headline">Bitcoin Surges Past $45,000 Amid ETF Optimism</h3>
-        <p class="body-copy">Bitcoin climbs to its highest level this year as institutional investors continue buying spot Bitcoin exchange-traded funds.</p>
-        <a class="read-more" href="https://www.coindesk.com" target="_blank" rel="noopener">Read Full Story →</a>
-        <p class="source-tag">Source: <a href="https://www.coindesk.com" target="_blank" rel="noopener">CoinDesk</a></p>
+        <div class="kicker">FINANCE</div>
+        <h3 class="headline">Was Dhurandhar actor Vivek Sinha paid Rs 1 crore? Actor says: ‘It was a good….’</h3>
+        <p class="body-copy">Vivek Sinha, who played Zahoor Mistry in &#x27;Dhurandhar&#x27;, has debunked rumors of earning Rs 1 crore for his role. He clarified that while his remuneration was fair, the reported figures were highly exagg</p>
+        <a class="read-more" href="https://economictimes.indiatimes.com/magazines/panache/was-dhurandhar-actor-vivek-sinha-paid-rs-1-crore-actor-says-it-was-a-good-/articleshow/130169928.cms" target="_blank" rel="noopener">Read Full Story →</a>
+        <p class="source-tag">Source: <a href="https://economictimes.indiatimes.com/magazines/panache/was-dhurandhar-actor-vivek-sinha-paid-rs-1-crore-actor-says-it-was-a-good-/articleshow/130169928.cms" target="_blank" rel="noopener">The Times of India</a></p>
       </article>
       <article>
-        <div class="kicker">Corporate</div>
-        <h3 class="headline">Tech Giants Report Strong Q1 Earnings, AI Spending Surges</h3>
-        <p class="body-copy">Major tech companies exceed earnings expectations as artificial intelligence investments drive growth and shareholder enthusiasm.</p>
-        <a class="read-more" href="https://www.bloomberg.com" target="_blank" rel="noopener">Read Full Story →</a>
-        <p class="source-tag">Source: <a href="https://www.bloomberg.com" target="_blank" rel="noopener">Bloomberg</a></p>
+        <div class="kicker">FINANCE</div>
+        <h3 class="headline">Attain Finance Successfully Upsizes Heights Finance Credit Facility</h3>
+        <p class="body-copy">GREENVILLE, S.C. — Attain Finance (“Attain” or the “Company”), a leading consumer finance company, today announced it has successfully completed the upsizing of its Heights Finance 2025-A credit facil</p>
+        <a class="read-more" href="https://financialpost.com/pmn/business-wire-news-releases-pmn/attain-finance-successfully-upsizes-heights-finance-credit-facility" target="_blank" rel="noopener">Read Full Story →</a>
+        <p class="source-tag">Source: <a href="https://financialpost.com/pmn/business-wire-news-releases-pmn/attain-finance-successfully-upsizes-heights-finance-credit-facility" target="_blank" rel="noopener">Financial Post</a></p>
       </article>
       <article>
-        <div class="kicker">Banking</div>
-        <h3 class="headline">Fed Approves New Capital Requirements for Large Banks</h3>
-        <p class="body-copy">The Federal Reserve announces stricter capital requirements for banks with assets over $100 billion to enhance financial system stability.</p>
-        <a class="read-more" href="https://www.federalreserve.gov" target="_blank" rel="noopener">Read Full Story →</a>
-        <p class="source-tag">Source: <a href="https://www.federalreserve.gov" target="_blank" rel="noopener">Federal Reserve</a></p>
+        <div class="kicker">FINANCE</div>
+        <h3 class="headline">NIO Inc. Files Its Annual Report on Form 20-F</h3>
+        <p class="body-copy">SHANGHAI, April 10, 2026 (GLOBE NEWSWIRE) -- NIO Inc. (NYSE: NIO; HKEX: 9866; SGX: NIO) (“NIO” or the “Company”), a pioneer and a leading company in the global smart electric vehicle market, today fil</p>
+        <a class="read-more" href="https://www.globenewswire.com/news-release/2026/04/10/3271715/0/en/NIO-Inc-Files-Its-Annual-Report-on-Form-20-F.html" target="_blank" rel="noopener">Read Full Story →</a>
+        <p class="source-tag">Source: <a href="https://www.globenewswire.com/news-release/2026/04/10/3271715/0/en/NIO-Inc-Files-Its-Annual-Report-on-Form-20-F.html" target="_blank" rel="noopener">GlobeNewswire</a></p>
       </article>
       <article>
-        <div class="kicker">Real Estate</div>
-        <h3 class="headline">Commercial Property Values Rebound as Rates Stabilize</h3>
-        <p class="body-copy">Commercial real estate prices show signs of recovery as interest rates stabilize and investor confidence returns to the market.</p>
-        <a class="read-more" href="https://www.zillow.com/commercial" target="_blank" rel="noopener">Read Full Story →</a>
-        <p class="source-tag">Source: <a href="https://www.zillow.com/" target="_blank" rel="noopener">Zillow</a></p>
+        <div class="kicker">FINANCE</div>
+        <h3 class="headline">How to Fight a War in Space</h3>
+        <p class="body-copy">Space lasers and orbital nuclear weapons could be how World War III begins, Bloomberg Opinion columnist Andreas Kluth explains. (Source: Bloomberg)</p>
+        <a class="read-more" href="https://www.bloomberg.com/news/videos/2026-04-11/opinion-how-to-fight-a-war-in-space-video" target="_blank" rel="noopener">Read Full Story →</a>
+        <p class="source-tag">Source: <a href="https://www.bloomberg.com/news/videos/2026-04-11/opinion-how-to-fight-a-war-in-space-video" target="_blank" rel="noopener">Bloomberg Markets</a></p>
       </article>
       <article>
-        <div class="kicker">Insurance</div>
-        <h3 class="headline">Health Insurance Premiums Rise 5% for 2027 Coverage</h3>
-        <p class="body-copy">Major health insurers announce average premium increases of 5% for 2027 coverage, driven by medical cost inflation and aging population.</p>
-        <a class="read-more" href="https://www.healthcare.gov" target="_blank" rel="noopener">Read Full Story →</a>
-        <p class="source-tag">Source: <a href="https://www.cms.gov" target="_blank" rel="noopener">CMS</a></p>
+        <div class="kicker">FINANCE</div>
+        <h3 class="headline">The Choke Point That Could Break the Global Economy</h3>
+        <p class="body-copy">The war with Iran has already cost lives, billions of dollars, and shaken the foundations of the global economy and the worst may be yet to come. Afsaneh Beschloss of RockCreek tells us why Russia and</p>
+        <a class="read-more" href="https://www.bloomberg.com/news/videos/2026-04-11/the-choke-point-that-could-break-the-global-economy-video" target="_blank" rel="noopener">Read Full Story →</a>
+        <p class="source-tag">Source: <a href="https://www.bloomberg.com/news/videos/2026-04-11/the-choke-point-that-could-break-the-global-economy-video" target="_blank" rel="noopener">Bloomberg Markets</a></p>
       </article>
       <article>
-        <div class="kicker">Commodities</div>
-        <h3 class="headline">Gold Prices Hit 12-Month High Amid Economic Uncertainty</h3>
-        <p class="body-copy">Gold futures surge to $2,180 per ounce as investors seek safe-haven assets amid geopolitical tensions and inflation concerns.</p>
-        <a class="read-more" href="https://www.cmegroup.com" target="_blank" rel="noopener">Read Full Story →</a>
-        <p class="source-tag">Source: <a href="https://www.cmegroup.com" target="_blank" rel="noopener">CME Group</a></p>
-      </article>
-      <article>
-        <div class="kicker">Mergers</div>
-        <h3 class="headline">Mega-Cap Acquisition Reshapes Technology Industry Landscape</h3>
-        <p class="body-copy">A $150 billion acquisition announced in landmark deal combining two of the world's largest tech companies into industry behemoth.</p>
-        <a class="read-more" href="https://www.reuters.com/business" target="_blank" rel="noopener">Read Full Story →</a>
-        <p class="source-tag">Source: <a href="https://www.reuters.com/" target="_blank" rel="noopener">Reuters</a></p>
-      </article>
-      <article>
-        <div class="kicker">Earnings</div>
-        <h3 class="headline">Corporate Profit Margins Remain Resilient Despite Headwinds</h3>
-        <p class="body-copy">Companies maintain profit margins above 10% despite inflationary pressures, demonstrating pricing power and operational efficiency improvements.</p>
-        <a class="read-more" href="https://www.ft.com/" target="_blank" rel="noopener">Read Full Story →</a>
-        <p class="source-tag">Source: <a href="https://www.ft.com/" target="_blank" rel="noopener">Financial Times</a></p>
+        <div class="kicker">FINANCE</div>
+        <h3 class="headline">Chokepoints in the Strait of Hormuz and in Producing Critical Minerals</h3>
+        <p class="body-copy">There’s a lot at stake.</p>
+        <a class="read-more" href="https://www.bloomberg.com/news/newsletters/2026-04-11/chokepoints-in-the-strait-of-hormuz-and-in-producing-critical-minerals" target="_blank" rel="noopener">Read Full Story →</a>
+        <p class="source-tag">Source: <a href="https://www.bloomberg.com/news/newsletters/2026-04-11/chokepoints-in-the-strait-of-hormuz-and-in-producing-critical-minerals" target="_blank" rel="noopener">Bloomberg Markets</a></p>
       </article>
     </div>
   </section>
 
-  <!-- INNOVATION NEWS -->
   <section id="innovation" class="news-section">
     <div class="section-label highlight">Innovation</div>
-    <div class="grid three-col">
+    <div class="grid">
       <article>
-        <div class="kicker">AI</div>
-        <h3 class="headline">New AI Model Achieves Breakthrough in Medical Diagnostics</h3>
-        <p class="body-copy">Researchers unveil AI system that diagnoses rare diseases faster than human specialists, marking major advance in healthcare.</p>
-        <a class="read-more" href="https://www.theverge.com" target="_blank" rel="noopener">Read Full Story →</a>
-        <p class="source-tag">Source: <a href="https://www.theverge.com" target="_blank" rel="noopener">The Verge</a></p>
+        <div class="kicker">INNOVATION</div>
+        <h3 class="headline">Oncotelic Therapeutics Inc. (OTCQB: OTLC) Strengthening Position with AI-Driven </h3>
+        <p class="body-copy">NEW YORK, April 10, 2026 (GLOBE NEWSWIRE) -- via AINewsWire — Oncotelic Therapeutics Inc. (OTCQB: OTLC) today announces its placement in an editorial published by AINewsWire (&quot;AINW&quot;), one of 75+ brand</p>
+        <a class="read-more" href="https://www.globenewswire.com/news-release/2026/04/10/3271722/0/en/Oncotelic-Therapeutics-Inc-OTCQB-OTLC-Strengthening-Position-with-AI-Driven-Tech-in-Automated-Compliance-Space.html" target="_blank" rel="noopener">Read Full Story →</a>
+        <p class="source-tag">Source: <a href="https://www.globenewswire.com/news-release/2026/04/10/3271722/0/en/Oncotelic-Therapeutics-Inc-OTCQB-OTLC-Strengthening-Position-with-AI-Driven-Tech-in-Automated-Compliance-Space.html" target="_blank" rel="noopener">GlobeNewswire</a></p>
       </article>
       <article>
-        <div class="kicker">Green Tech</div>
-        <h3 class="headline">Fusion Energy Startup Reaches Net Energy Gain Milestone</h3>
-        <p class="body-copy">Commonwealth Fusion Systems announces successful reactor test that produces more energy than it consumes, advancing clean energy revolution.</p>
-        <a class="read-more" href="https://www.techcrunch.com" target="_blank" rel="noopener">Read Full Story →</a>
-        <p class="source-tag">Source: <a href="https://www.techcrunch.com" target="_blank" rel="noopener">TechCrunch</a></p>
+        <div class="kicker">INNOVATION</div>
+        <h3 class="headline">NIO Inc. Files Its Annual Report on Form 20-F</h3>
+        <p class="body-copy">SHANGHAI, April 10, 2026 (GLOBE NEWSWIRE) -- NIO Inc. (NYSE: NIO; HKEX: 9866; SGX: NIO) (“NIO” or the “Company”), a pioneer and a leading company in the global smart electric vehicle market, today fil</p>
+        <a class="read-more" href="https://www.globenewswire.com/news-release/2026/04/10/3271715/0/en/NIO-Inc-Files-Its-Annual-Report-on-Form-20-F.html" target="_blank" rel="noopener">Read Full Story →</a>
+        <p class="source-tag">Source: <a href="https://www.globenewswire.com/news-release/2026/04/10/3271715/0/en/NIO-Inc-Files-Its-Annual-Report-on-Form-20-F.html" target="_blank" rel="noopener">GlobeNewswire</a></p>
       </article>
       <article>
-        <div class="kicker">Biotech</div>
-        <h3 class="headline">Gene Editing Advances Offer New Hope for Genetic Diseases</h3>
-        <p class="body-copy">CRISPR-based treatments enter clinical trials for previously untreatable genetic conditions, offering potential cures for patients worldwide.</p>
-        <a class="read-more" href="https://www.nature.com" target="_blank" rel="noopener">Read Full Story →</a>
-        <p class="source-tag">Source: <a href="https://www.nature.com" target="_blank" rel="noopener">Nature</a></p>
+        <div class="kicker">INNOVATION</div>
+        <h3 class="headline">Nightfood Holdings Inc. (OTCQB: NGTF) Brings AI-Enabled Robotics Platform to Gro</h3>
+        <p class="body-copy">NEW YORK, April 10, 2026 (GLOBE NEWSWIRE) -- via AINewsWire — Nightfood Holdings inc. (OTCQB: NGTF) today announces its placement in an editorial published by AINewsWire (&quot;AINW&quot;), one of 75+ brands wi</p>
+        <a class="read-more" href="https://www.globenewswire.com/news-release/2026/04/10/3271721/0/en/Nightfood-Holdings-Inc-OTCQB-NGTF-Brings-AI-Enabled-Robotics-Platform-to-Growing-Pharma-Manufacturing-Space.html" target="_blank" rel="noopener">Read Full Story →</a>
+        <p class="source-tag">Source: <a href="https://www.globenewswire.com/news-release/2026/04/10/3271721/0/en/Nightfood-Holdings-Inc-OTCQB-NGTF-Brings-AI-Enabled-Robotics-Platform-to-Growing-Pharma-Manufacturing-Space.html" target="_blank" rel="noopener">GlobeNewswire</a></p>
       </article>
       <article>
-        <div class="kicker">Robotics</div>
-        <h3 class="headline">Humanoid Robot Prototype Performs Complex Assembly Tasks</h3>
-        <p class="body-copy">Engineers demonstrate next-generation humanoid robot capable of performing intricate assembly work in manufacturing environments with human-level dexterity.</p>
-        <a class="read-more" href="https://www.robotics.org" target="_blank" rel="noopener">Read Full Story →</a>
-        <p class="source-tag">Source: <a href="https://www.robotics.org" target="_blank" rel="noopener">Robotics Institute</a></p>
-      </article>
-      <article>
-        <div class="kicker">Materials</div>
-        <h3 class="headline">Scientists Develop Self-Healing Concrete for Sustainable Building</h3>
-        <p class="body-copy">Researchers create concrete with self-healing properties that automatically repair cracks, extending structure lifespan by decades.</p>
-        <a class="read-more" href="https://www.mit.edu/" target="_blank" rel="noopener">Read Full Story →</a>
-        <p class="source-tag">Source: <a href="https://www.mit.edu/" target="_blank" rel="noopener">MIT</a></p>
-      </article>
-      <article>
-        <div class="kicker">Transportation</div>
-        <h3 class="headline">Electric Aircraft Completes First Commercial Flight Test</h3>
-        <p class="body-copy">Electric aviation company successfully tests commercial passenger aircraft with zero-emission engines, marking milestone for sustainable aviation.</p>
-        <a class="read-more" href="https://www.airbus.com/" target="_blank" rel="noopener">Read Full Story →</a>
-        <p class="source-tag">Source: <a href="https://www.airbus.com/" target="_blank" rel="noopener">Airbus</a></p>
-      </article>
-      <article>
-        <div class="kicker">Computing</div>
-        <h3 class="headline">Photonic Computing Achieves Speed Records in Data Processing</h3>
-        <p class="body-copy">Photonic computing systems using light instead of electricity process data at unprecedented speeds, opening new possibilities for edge computing.</p>
-        <a class="read-more" href="https://www.intel.com/" target="_blank" rel="noopener">Read Full Story →</a>
-        <p class="source-tag">Source: <a href="https://www.intel.com/" target="_blank" rel="noopener">Intel</a></p>
-      </article>
-      <article>
-        <div class="kicker">Water</div>
-        <h3 class="headline">New Filtration Technology Provides Clean Drinking Water</h3>
-        <p class="body-copy">Engineers develop inexpensive water filtration system using nanotechnology to remove contaminants, offering solution for developing nations.</p>
-        <a class="read-more" href="https://www.waterorg.org/" target="_blank" rel="noopener">Read Full Story →</a>
-        <p class="source-tag">Source: <a href="https://www.waterorg.org/" target="_blank" rel="noopener">Water.org</a></p>
-      </article>
-      <article>
-        <div class="kicker">Wearables</div>
-        <h3 class="headline">Smart Clothing Monitors Health Metrics in Real-Time</h3>
-        <p class="body-copy">New line of smart clothing embedded with biometric sensors tracks vital signs, fitness metrics, and overall health without bulky devices.</p>
-        <a class="read-more" href="https://www.apple.com/health" target="_blank" rel="noopener">Read Full Story →</a>
-        <p class="source-tag">Source: <a href="https://www.apple.com/" target="_blank" rel="noopener">Apple</a></p>
+        <div class="kicker">INNOVATION</div>
+        <h3 class="headline">Loitering Munition Market Projected to Surpass USD 29.48 Billion by 2035, Driven</h3>
+        <p class="body-copy">Strategic Shift Toward Autonomous Kamikaze Drones Triggers a 20.25% CAGR as Global Defense Budgets Prioritize Low-Cost Aerial Attrition. Strategic Shift Toward Autonomous Kamikaze Drones Triggers a 20</p>
+        <a class="read-more" href="https://www.globenewswire.com/news-release/2026/04/10/3271718/0/en/Loitering-Munition-Market-Projected-to-Surpass-USD-29-48-Billion-by-2035-Driven-by-Precision-Warfare-Demand-SNS-Insider.html" target="_blank" rel="noopener">Read Full Story →</a>
+        <p class="source-tag">Source: <a href="https://www.globenewswire.com/news-release/2026/04/10/3271718/0/en/Loitering-Munition-Market-Projected-to-Surpass-USD-29-48-Billion-by-2035-Driven-by-Precision-Warfare-Demand-SNS-Insider.html" target="_blank" rel="noopener">GlobeNewswire</a></p>
       </article>
     </div>
   </section>
 
-  <!-- TICKER -->
   <div class="ticker">
-    <span>⬥ Click the top navigation tabs to browse sections</span>
+    <span>⬥ Real news updated daily from NewsAPI & RSS feeds</span>
     <span>⬥ All stories link to original sources</span>
-    <span>⬥ Auto-published daily via GitHub Actions</span>
+    <span>⬥ Auto-published daily at 7 AM EST via GitHub Actions</span>
     <span>⬥ The Triangle Tribune: All the news fit to read</span>
   </div>
 
   <footer>
-    The Triangle Tribune · Digital Morning Edition · Friday, April 10, 2026<br>
+    The Triangle Tribune · Digital Morning Edition · Saturday, April 11, 2026<br>
     Serving Raleigh, Durham, Chapel Hill, Cary & the Research Triangle · Auto-published via GitHub Actions
   </footer>
 
 </div>
 </div>
 
-<!-- SECTION NAVIGATION SCRIPT -->
 <script>
   const navLinks = document.querySelectorAll('.nav-link');
   const sections = document.querySelectorAll('.news-section');
@@ -901,19 +646,12 @@
       e.preventDefault();
       const targetSection = link.getAttribute('data-section');
 
-      // Hide all sections
       sections.forEach(section => section.classList.remove('active'));
-
-      // Remove active class from all nav links
       navLinks.forEach(l => l.classList.remove('active'));
 
-      // Show target section
       document.getElementById(targetSection).classList.add('active');
-
-      // Add active class to clicked link
       link.classList.add('active');
 
-      // Smooth scroll to top on mobile
       if (window.innerWidth < 768) {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
