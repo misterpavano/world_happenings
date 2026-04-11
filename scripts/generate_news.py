@@ -78,9 +78,12 @@ def fetch_newsapi(category, num_articles=3):
         if response.status_code == 200:
             data = response.json()
             for article in data.get('articles', []):
-                # Only include articles with valid URLs
+                # Only include articles with valid ARTICLE URLs (not homepages)
                 article_url = article.get('url', '').strip()
-                if article_url and article_url.startswith('http'):
+                if (article_url and
+                    article_url.startswith('http') and
+                    not article_url.endswith('/') and
+                    len(article_url) > 30):  # Real article URLs are longer
                     articles.append({
                         'headline': article.get('title', 'Breaking News'),
                         'summary': (article.get('description') or article.get('content') or 'Read more at source')[:200],
@@ -104,9 +107,12 @@ def fetch_rss_feeds(category, num_articles=3):
         try:
             feed = feedparser.parse(feed_url)
             for entry in feed.entries:
-                # Only include entries with valid URLs
+                # Only include entries with valid ARTICLE URLs (not homepages)
                 entry_url = entry.get('link', '').strip()
-                if entry_url and entry_url.startswith('http'):
+                if (entry_url and
+                    entry_url.startswith('http') and
+                    not entry_url.endswith('/') and
+                    len(entry_url) > 30):  # Real article URLs are longer
                     articles.append({
                         'headline': html.unescape(entry.get('title', 'Breaking News')),
                         'summary': html.unescape(entry.get('summary', 'Read more'))[:200],
